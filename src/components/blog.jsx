@@ -215,7 +215,7 @@ const Blog = () => {
                             </lord-icon>
 
                         </a>
-                        <a href="https://github.com/git-00000/" target='_blank' rel="noopener noreferrer">
+                        <a href="https://github.com/devv-koushik" target='_blank' rel="noopener noreferrer">
                             <lord-icon
                                 src="https://cdn.lordicon.com/ioihllwu.json"
                                 trigger="hover"

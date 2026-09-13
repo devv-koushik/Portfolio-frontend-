@@ -33,7 +33,7 @@ const About = () => {
 
             </div>
             <div className="header">
-                <a href= "/assets/My_CV.pdf" download="koushik's CV.pdf" target='_blank' rel="noopener noreferrer">
+                <a href="/assets/My_CV.pdf" download="koushik's CV.pdf" target='_blank' rel="noopener noreferrer">
                     <button className="download-btn">
                         <FaDownload /> Download cv
                     </button>
@@ -55,7 +55,7 @@ const About = () => {
                             <h3>
                                 Personal Portfolio Website.{" "}
                                 <a
-                                    href="https://github.com/git-00000/Portfolio-frontend-"
+                                    href="https://github.com/devv-koushik/Portfolio-frontend-"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     style={{ color: "inherit", textDecoration: "none" }}
@@ -80,7 +80,7 @@ const About = () => {
                             <h3>
                                 Daily Digestive Email application.{" "}
                                 <a
-                                    href="https://github.com/git-00000/Daily-Digest-Email-Python-Project-"
+                                    href="https://github.com/devv-koushik/Daily-Digest-Email-Python-Project-"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     style={{ color: "inherit", textDecoration: "none" }}
@@ -149,7 +149,7 @@ const About = () => {
                         </li>
                     </ul>
                 </section>
-                <section className="Aboutme" id="events">
+                {/* <section className="Aboutme" id="events">
                     <h2>
                         <FaCalendarCheck /> List of Events
                         (Organized/Attended)
@@ -158,7 +158,7 @@ const About = () => {
                         <li>Organized: AI and Machine Learning Conference, 2023</li>
                         <li>Attended: International Tech Summit, 2022</li>
                     </ul>
-                </section>
+                </section> */}
                 <section className="Aboutme" id="presentations">
                     <h2>
                         <FaChalkboardTeacher />
@@ -181,6 +181,12 @@ const About = () => {
                             <a href="/assets/Documents/Developing Soft Skills and Personality.pdf" download="Koushik's NPTEL certificate" target='_blank' rel="noopener noreferrer"><FaDownload className="list-download-btn" /></a>
                         </li>
                         <li>Introduction To Programming In C (NPTEL)
+                            <a href="/assets/Documents/Introduction to Programming in C.pdf" download="Koushik's NPTEL certificate" target='_blank' rel="noopener noreferrer"><FaDownload className="list-download-btn" /></a>
+                        </li>
+                        <li>Introduction To JaVA programming (NPTEL)
+                            <a href="/assets/Documents/Introduction to Programming in C.pdf" download="Koushik's NPTEL certificate" target='_blank' rel="noopener noreferrer"><FaDownload className="list-download-btn" /></a>
+                        </li>
+                        <li>The Joy of computing using Python (NPTEL)
                             <a href="/assets/Documents/Introduction to Programming in C.pdf" download="Koushik's NPTEL certificate" target='_blank' rel="noopener noreferrer"><FaDownload className="list-download-btn" /></a>
                         </li>
 

@@ -38,7 +38,7 @@ const Home = () => {
                             <a href="https://www.linkedin.com/in/koushik-bhowmick-a832a5319/" target="_blank" rel="noopener noreferrer">
                                 <FaLinkedinIn />
                             </a>
-                            <a href="https://github.com/git-00000/" target="_blank" rel="noopener noreferrer">
+                            <a href="https://github.com/devv-koushik" target="_blank" rel="noopener noreferrer">
                                 <FaGithub />
                             </a>
                             <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
