@@ -9,36 +9,37 @@ import '../style/blog.css';
 
 
 const Button = ({ initialLikes, blogId }) => {
-    // State to manage the like status (checked/unchecked) and count
-    const [isLiked, setIsLiked] = useState(false);
-    const [likeCount, setLikeCount] = useState(initialLikes);
+    // Check if current user has liked this post from localStorage
+    const [isLiked, setIsLiked] = useState(() => {
+        try {
+            return localStorage.getItem(`blog_liked_${blogId}`) === 'true';
+        } catch {
+            return false;
+        }
+    });
 
     const handleLikeToggle = () => {
-        // Optimistic UI update
-        const newIsLiked = !isLiked;
-        setIsLiked(newIsLiked);
+        const nextLiked = !isLiked;
+        setIsLiked(nextLiked);
 
-        // Update the count based on the new state
-        setLikeCount(prevCount => newIsLiked ? prevCount + 1 : prevCount - 1);
-
-        // NOTE: In a real application, you would make an API call here
-        // to persist the like/unlike action for this specific `blogId`.
-        // e.g., fetch(`/api/blogs/${blogId}/like`, { method: newIsLiked ? 'POST' : 'DELETE' })
+        try {
+            localStorage.setItem(`blog_liked_${blogId}`, String(nextLiked));
+            localStorage.setItem(`blog_likes_count_${blogId}`, String(nextLiked ? initialLikes + 1 : initialLikes));
+        } catch (e) {
+            console.error('Failed to save like state to localStorage:', e);
+        }
     };
 
-    // Calculate the counts to display for the animation
-    const countOne = likeCount; // Current or unliked count
-    // const countTwo = likeCount + 1; // Count when liked
-
-    // Determine which count to show in the "one" and "two" slots for the animation
-    const displayedCountOne = isLiked ? countOne - 1 : countOne;
-    const displayedCountTwo = isLiked ? countOne : countOne + 1;
-
+    // Slot 'one' displays base count (initialLikes, shown when unliked)
+    // Slot 'two' displays liked count (initialLikes + 1, shown when liked)
+    // The CSS vertical slide animates seamlessly between them (+1 when liked, -1 when unliked)
+    const displayedCountOne = initialLikes;
+    const displayedCountTwo = initialLikes + 1;
 
     return (
         <div className="like-wrapper">
             <div className="like-button">
-                {/* Use a unique ID for each checkbox */}
+                {/* Checkbox that drives the CSS animations */}
                 <input
                     className="on"
                     id={`heart-${blogId}`}
@@ -52,12 +53,12 @@ const Button = ({ initialLikes, blogId }) => {
                     </svg>
                     <span className="like-text">Likes</span>
                 </label>
-                <span className="like-count one">{displayedCountOne}</span>
-                <span className="like-count two">{displayedCountTwo}</span>
+                <label className="like-count one" htmlFor={`heart-${blogId}`}>{displayedCountOne}</label>
+                <label className="like-count two" htmlFor={`heart-${blogId}`}>{displayedCountTwo}</label>
             </div>
         </div>
     );
-}
+};
 
 // --- End of Button Component & StyledWrapper ---
 
@@ -102,6 +103,7 @@ const Blog = () => {
     const [review, setReview] = useState('');
     const [reviewStatus, setReviewStatus] = useState('');
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [isSubmitted, setIsSubmitted] = useState(false);
 
     const toggleExpand = (id) => {
         setExpandedBlogs(prevState => ({
@@ -133,6 +135,7 @@ const Blog = () => {
 
             if (response.ok) {
                 setReviewStatus('Thanks for your review! It has been submitted successfully. 👍');
+                setIsSubmitted(true);
                 setReview('');
             } else {
                 setReviewStatus('Failed to submit review. Please try again.');
@@ -160,7 +163,7 @@ const Blog = () => {
 
                 {blogPosts.map(blog => (
                     <div key={blog.id} className="blogitem">
-                        <img alt={blog.title} className="blog-thumb" src={blog.image} />
+                        <img alt={blog.title} className="blog-thumb" src={blog.image} loading="lazy" decoding="async" />
                         <div className="blog-header">
                             <h2>{blog.title}</h2>
                             {/* --- Integrated Button Component --- */}
@@ -190,12 +193,10 @@ const Blog = () => {
                             className="review-textarea"
                             disabled={isSubmitting}
                         />
-                        {reviewStatus === 'Thanks for your review! It has been submitted successfully. 👍' ? null : (
-
+                        {!isSubmitted && (
                             <button type="submit" className="btn-sm submit-review" disabled={isSubmitting}>
                                 {isSubmitting ? "Submitting..." : "Submit Review"}
                             </button>
-
                         )}
                     </form>
                     {reviewStatus && <p className="review-status">{reviewStatus}</p>}

@@ -57,11 +57,11 @@ const Navbar = () => {
             
             {/* Main Navigation Links. Add 'active' class when menu is open */}
             <nav className={`nav-links ${isMenuOpen ? 'active' : ''}`}> 
-                <NavLink to="/" exact activeClassName="active" onClick={closeMenu}>Home</NavLink>
-                <NavLink to="/about" activeClassName="active" onClick={closeMenu}>About Me</NavLink>
-                <NavLink to="/skills" activeClassName="active" onClick={closeMenu}>Skills</NavLink>
-                <NavLink to="/contact" activeClassName="active" onClick={closeMenu}>Contact</NavLink>
-                <NavLink to="/blogs" activeClassName="active" onClick={closeMenu}>Blogs</NavLink>
+                <NavLink to="/" end className={({ isActive }) => isActive ? 'active' : ''} onClick={closeMenu}>Home</NavLink>
+                <NavLink to="/about" className={({ isActive }) => isActive ? 'active' : ''} onClick={closeMenu}>About Me</NavLink>
+                <NavLink to="/skills" className={({ isActive }) => isActive ? 'active' : ''} onClick={closeMenu}>Skills</NavLink>
+                <NavLink to="/contact" className={({ isActive }) => isActive ? 'active' : ''} onClick={closeMenu}>Contact</NavLink>
+                <NavLink to="/blogs" className={({ isActive }) => isActive ? 'active' : ''} onClick={closeMenu}>Blogs</NavLink>
             </nav>
             
             {/* The Hamburger/Close Icon (NewHam) */}

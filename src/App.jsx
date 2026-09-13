@@ -23,7 +23,7 @@ const AnimatedPage = ({ children }) => {
             animate="animate"
             exit="exit"
             transition={{ duration: 0.2 }}
-            style={{ width: '100%', position: 'absolute' }}
+            style={{ width: '100%' }}
         >
             {children}
         </motion.div>
@@ -33,7 +33,14 @@ const AnimatedPage = ({ children }) => {
 const RouteContainer = () => {
     const location = useLocation();
 
+    // Re-initialize Lenis on every route change so scroll height
+    // is recalculated for the new page and scroll position resets to top.
+    // Skip Lenis on /contact — that page has no scroll by design.
     useEffect(() => {
+        window.scrollTo(0, 0);
+
+        if (location.pathname === '/contact') return; // no smooth scroll on contact
+
         const lenis = new Lenis({
             duration: 1.2,
             easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -45,10 +52,13 @@ const RouteContainer = () => {
             requestAnimationFrame(raf);
         }
 
-        requestAnimationFrame(raf);
+        const rafId = requestAnimationFrame(raf);
 
-        return () => lenis.destroy();
-    }, []);
+        return () => {
+            cancelAnimationFrame(rafId);
+            lenis.destroy();
+        };
+    }, [location.pathname]);
 
     return (
         <AnimatePresence mode="wait">

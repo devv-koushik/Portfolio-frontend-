@@ -102,9 +102,9 @@ export default function Skills() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
       >
-        <h2 className="text-5xl text-red-500 font-semibold mb-3">My Skills</h2>
-        <div className="w-28 h-[2px] bg-red-500 mx-auto mb-6"></div>
-        <p className="text-gray-400 text-lg max-w-xl mx-auto">
+        <h2 style={{ fontSize: '3rem', color: '#ef4444', fontWeight: 600, marginBottom: '0.75rem' }}>My Skills</h2>
+        <div style={{ width: '7rem', height: '2px', background: '#ef4444', margin: '0 auto 1.5rem' }}></div>
+        <p style={{ color: '#9ca3af', fontSize: '1.125rem', maxWidth: '36rem', margin: '0 auto' }}>
           ✨ Technical expertise blended with creativity — explore my core competencies below.
         </p>
       </motion.div>

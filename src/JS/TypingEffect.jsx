@@ -7,8 +7,11 @@ const TypingEffect = () => {
   const [wordIndex, setWordIndex] = useState(0);
   const [charIndex, setCharIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [isPausing, setIsPausing] = useState(false);
 
   useEffect(() => {
+    if (isPausing) return; // Do nothing while paused — the pause timer handles the transition
+
     const type = () => {
       const currentFullWord = words[wordIndex];
       if (!isDeleting) {
@@ -17,9 +20,12 @@ const TypingEffect = () => {
           setCurrentWord(prev => prev + currentFullWord.charAt(charIndex));
           setCharIndex(prev => prev + 1);
         } else {
-          // Finished typing, start deleting after a delay
-          setIsDeleting(true);
-          setTimeout(() => {}, 1000); // Pause at the end
+          // Finished typing — pause 1 second before starting to delete
+          setIsPausing(true);
+          setTimeout(() => {
+            setIsPausing(false);
+            setIsDeleting(true);
+          }, 1000);
         }
       } else {
         // Deleting
@@ -38,7 +44,7 @@ const TypingEffect = () => {
     const timer = setTimeout(type, typingSpeed);
 
     return () => clearTimeout(timer); // Cleanup function
-  }, [wordIndex, charIndex, isDeleting]);
+  }, [wordIndex, charIndex, isDeleting, isPausing]);
 
   return (
     <div className="typing-text">

@@ -178,10 +178,10 @@ const About = () => {
                     <ul className="tab">
                         <li>
                             Soft Skill Development (NPTEL) by IIT Kanpur
-                            <a href="/assets/Documents/public/assets/Documents/Developing Soft Skills and Personality.pdf" download="Koushik's NPTEL certificate" target='blank'><FaDownload className="list-download-btn" /></a>
+                            <a href="/assets/Documents/Developing Soft Skills and Personality.pdf" download="Koushik's NPTEL certificate" target='_blank' rel="noopener noreferrer"><FaDownload className="list-download-btn" /></a>
                         </li>
                         <li>Introduction To Programming In C (NPTEL)
-                            <a href="/assets/Documents/public/assets/Documents/Introduction to Programming in C.pdf" download="Koushik's NPTEL certificate" target='blank' rel="noopener noreferrer"><FaDownload className="list-download-btn" /></a>
+                            <a href="/assets/Documents/Introduction to Programming in C.pdf" download="Koushik's NPTEL certificate" target='_blank' rel="noopener noreferrer"><FaDownload className="list-download-btn" /></a>
                         </li>
 
                     </ul>

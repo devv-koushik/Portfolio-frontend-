@@ -16,16 +16,17 @@ const Contact = () => {
     // State to manage UI feedback (loading, success, error)
     const [status, setStatus] = useState('');
 
-    // ✅ Use useEffect to control body overflow
+    // Lock all scroll on the contact page — no scrollbar wanted here
     useEffect(() => {
-        // Add the style when the component mounts
-        document.body.style.overflowY = 'hidden';
-
-        // Cleanup function to remove the style when the component unmounts
+        const html = document.documentElement;
+        const body = document.body;
+        html.style.overflow = 'hidden';
+        body.style.overflow = 'hidden';
         return () => {
-            document.body.style.overflowY = 'unset'; // Or 'auto'
+            html.style.overflow = '';
+            body.style.overflow = '';
         };
-    }, []); // Empty dependency array ensures this runs only on mount and unmount
+    }, []);
 
     // Function to handle changes in form inputs
     const handleChange = (e) => {
@@ -138,18 +139,7 @@ const Contact = () => {
                             <li><a href='https://www.linkedin.com/in/koushik-bhowmick-a832a5319/' ><FaLinkedinIn size={24} color="#fff" /></a></li>
                         </ul>
 
-                        <ul className="sci">
-                            <li>
-                                <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">
-                                    {/* Facebook Icon */}
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
-                                        style={{ fill: '#fff', width: '20px', height: '20px' }}>
-                                        <path d="M504 256C504 119...z" />
-                                    </svg>
-                                </a>
-                            </li>
-                            {/* Add other socials here */}
-                        </ul>
+
                     </div>
 
                     <div className="contactForm" id="contactForm">

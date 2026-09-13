@@ -162,6 +162,9 @@ const MatterCanvas = () => {
     return () => {
       Render.stop(render);
       Runner.stop(runner);
+      Events.off(engine, 'afterUpdate');
+      World.clear(world, false);
+      Engine.clear(engine);
       window.removeEventListener('mousemove', handleMouseMove);
     };
   }, []);

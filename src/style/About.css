@@ -1,90 +1,75 @@
+/* =============================================
+   About.css — Koushik's Portfolio (Redesigned)
+   ============================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
+/* Scope new fonts strictly to About page — never touch navbar or other pages */
+.timeline-section,
+.container-ab,
+.Aboutme,
+.timeline-content {
+  font-family: 'Inter', Arial, sans-serif;
+}
+
+/* ─── Tokens ─────────────────────────────── */
+:root {
+  --bg:           #080b0f;
+  --surface:      #0f1318;
+  --card:         #141920;
+  --border:       rgba(255,255,255,0.07);
+  --accent:       #e63946;
+  --accent-dim:   #b72d38;
+  --accent-glow:  rgba(230,57,70,0.35);
+  --text:         #e2e8f0;
+  --muted:        #64748b;
+  --soft:         #94a3b8;
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-body:    'Inter', sans-serif;
+}
+
+/* ─── Base ───────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
 body {
   margin: 0;
   padding: 0;
   color: #e0e0e0;
 }
 
-/* <div class="relative h-full w-full bg-black"><div class="absolute bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]"></div><div class="absolute left-0 right-0 top-[-10%] h-[1000px] w-[1000px] rounded-full bg-[radial-gradient(circle_400px_at_50%_300px,#fbfbfb36,#000)]"></div></div> */
-
-.container-ab {
-  width: 90%;
-  margin: auto;
-  overflow: hidden;
-  font-family: Arial, sans-serif;
-}
-
-/* Timeline Section */
-.timeline-section {
-  width: 80%;
-  margin: 40px auto;
-  padding: 20px;
-  background: transparent;
-  color: #e0e0e0;
-  font-family: Arial, sans-serif;
-}
-
-.timeline-section h2 {
-  font-size: 1.8rem;
-  margin-bottom: 30px;
-  color: #fff;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  border-left: 4px solid #e63946;
-  padding-left: 10px;
-}
-
-.timeline {
-  position: relative;
-  margin: 0 auto;
-  padding-left: 30px;
-  border-left: 3px solid #e63946;
-}
-
-.timeline-item {
-  position: relative;
-  margin-bottom: 25px;
-  padding-left: 20px;
-}
-
-.timeline-dot {
-  position: absolute;
-  left: -42px;
-  top: 6px;
-  width: 18px;
-  height: 18px;
-  background: #e63946;
+/* Subtle ambient glow in the page background */
+body::before {
+  content: '';
+  position: fixed;
+  top: -200px;
+  left: -200px;
+  width: 600px;
+  height: 600px;
   border-radius: 50%;
-  border: 3px solid #121212;
-  box-shadow: 0 0 8px #e63946;
+  background: radial-gradient(circle, rgba(230,57,70,0.12) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+body::after {
+  content: '';
+  position: fixed;
+  bottom: -100px;
+  right: -100px;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(59,130,246,0.07) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
 }
 
-.timeline-content {
-  background: #1e1e1e;
-  padding: 15px 20px;
-  border-radius: 8px;
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.6);
-  transition: transform 0.3s ease;
+/* ─── .main ──────────────────────────────── */
+.main {
+  position: relative;
+  z-index: 1;
 }
 
-.timeline-content h3 {
-  margin: 0 0 10px;
-  font-size: 1.3rem;
-  color: #e63946;
-}
-
-.timeline-content p {
-  margin: 0 0 8px;
-  font-size: 0.95rem;
-  color: #ccc;
-}
-
-.timeline-content .tech {
-  font-size: 0.85rem;
-  color: #aaa;
-  font-style: italic;
-}
-
+/* ─── Header ─────────────────────────────── */
 .header {
   background: transparent;
   color: #fff;
@@ -93,105 +78,10 @@ body {
   width: fit-content;
   position: relative;
   left: 72vw;
-}
-
-.Aboutme h2 {
-  font-size: 1.6rem;
-  margin-bottom: 1rem;
-  color: #fff;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  border-left: 4px solid #e63946;
-  /* Red accent line */
-  padding-left: 10px;
-}
-
-
-ul {
-  display: block;
-  list-style-type: disc;
-  margin-block-start: 0.5em;
-  margin-block-end: 0.5em;
-  padding-inline-start: 25px;
-}
-
-.Aboutme ul li {
-  padding: 8px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2)
-}
-
-
-.Aboutme h2,
-.Aboutme ul.tab li {
-  text-shadow: 0 0 5px rgba(255, 255, 255, 0.15);
-}
-
-.Aboutme {
-    opacity: 0;
-    transform: translateX(-80px);
-    transition: all 0.8s ease-out;
-}
-
-/* When card becomes visible */
-.Aboutme.show {
-    opacity: 1;
-    transform: translateX(0);
-}
-.Aboutme:nth-child(even) {
-    transform: translateX(80px);
-}
-.Aboutme:nth-child(even).show {
-    transform: translateX(0);
-}
-
-
-section {
-  padding: 20px;
-  margin: 20px 0;
-  background: rgba(255, 255, 255, 0.02);
-  border-radius: 10px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35),
-    inset 0 0 30px rgba(255, 255, 255, 0.05);
-  position: relative;
-  overflow: hidden;
-}
-
-
-section::before {
-  content: '';
-  position: absolute;
-  top: -2px;
-  left: -2px;
-  right: -2px;
-  bottom: -2px;
-  background: linear-gradient(60deg, #ca6868, #1e1e1e);
-  z-index: -1;
-  filter: blur(10px);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  border-radius: 35%;
-}
-
-.container-ab section:hover::before {
-  opacity: 1;
-}
-
-.container-ab section:hover {
-  transform: scale(1.02);
-  color: black;
-  border-radius: 5px;
-}
-
-.tab {
-  margin-left: 22px;
-  margin-top: 10px;
-}
-
-.header {
   z-index: 1000;
 }
 
+/* ─── Buttons ────────────────────────────── */
 .contact-btn {
   display: inline-block;
   width: 175px;
@@ -209,7 +99,7 @@ section::before {
   transition: 0.3s ease;
 }
 
-.download-btn{
+.download-btn {
   display: inline-block;
   width: 175px;
   height: 40px;
@@ -228,102 +118,341 @@ section::before {
   transition: 0.3s ease;
 }
 
+section {
+  padding: 20px;
+  margin: 20px 0;
+  /* background: rgba(255, 255, 255, 0.02);
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35),
+    inset 0 0 30px rgba(255, 255, 255, 0.05);
+  position: relative; */
+  /* overflow: hidden; */
+}
+
 .contact-btn:hover,
-.download-btn:hover{
+.download-btn:hover {
   transform: scale3d(1.03, 1.03, 1.03);
   background-color: #b74b4b;
   color: black;
   box-shadow: 0 0 25px #b74b4b;
 }
 
+/* ─── Timeline Section ───────────────────── */
+.timeline-section {
+  position: relative;
+  z-index: 1;
+  width: 80%;
+  margin: 48px auto;
+  padding: 20px;
+  background: transparent;
+  color: var(--text);
+}
+
+.timeline-section h2 {
+  font-family: 'Space Grotesk', Arial, sans-serif;
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 36px;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-left: 3px solid var(--accent);
+  padding-left: 14px;
+}
+
+.timeline {
+  position: relative;
+  margin: 0 auto;
+  padding-left: 36px;
+}
+
+/* Gradient vertical line */
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 8px;
+  top: 6px;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--accent) 0%, rgba(230,57,70,0.15) 100%);
+}
+
+/* Remove original border-left on .timeline */
+.timeline {
+  border-left: none;
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 28px;
+  padding-left: 20px;
+}
+
+/* Dot with pulse */
+.timeline-dot {
+  position: absolute;
+  left: -30px;
+  top: 8px;
+  width: 18px;
+  height: 18px;
+  background: var(--accent);
+  border-radius: 50%;
+  border: 3px solid var(--bg);
+  box-shadow: 0 0 10px var(--accent);
+}
+
+.timeline-dot::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  background: var(--accent-glow);
+  animation: dot-pulse 2.4s ease-out infinite;
+}
+
+@keyframes dot-pulse {
+  0%   { transform: scale(0.8); opacity: 0.7; }
+  80%  { transform: scale(2.2); opacity: 0; }
+  100% { opacity: 0; }
+}
+
+/* Timeline card */
+.timeline-content {
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: 18px 22px;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.timeline-content:hover {
+  transform: translateY(-3px);
+  border-color: rgba(230,57,70,0.3);
+  box-shadow: 0 10px 36px rgba(0,0,0,0.5), 0 0 0 1px rgba(230,57,70,0.1);
+}
+
+.timeline-content h3 {
+  margin: 0 0 10px;
+  font-family: 'Space Grotesk', Arial, sans-serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* The external link icon inherits color from h3 but subdued */
+.timeline-content h3 a {
+  color: var(--muted);
+  transition: color 0.2s;
+  display: inline-flex;
+  align-items: center;
+}
+.timeline-content h3 a:hover {
+  color: var(--accent);
+}
+
+.timeline-content p {
+  margin: 0 0 10px;
+  font-size: 0.92rem;
+  color: var(--soft);
+  line-height: 1.65;
+}
+
+/* Tech badge instead of plain italic */
+.timeline-content .tech {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-family: 'Space Grotesk', Arial, sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  color: var(--accent);
+  background: rgba(230,57,70,0.1);
+  border: 1px solid rgba(230,57,70,0.2);
+  border-radius: 4px;
+  padding: 3px 10px;
+  font-style: normal;
+}
+
+/* ─── Container ──────────────────────────── */
+.container-ab {
+  position: relative;
+  z-index: 1;
+  width: 90%;
+  margin: 0 auto 80px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+/* ─── Section cards ──────────────────────── */
+.Aboutme {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 26px 28px;
+  margin: 0;
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.65s ease, transform 0.65s ease,
+              box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.Aboutme.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger per child */
+.Aboutme:nth-child(1) { transition-delay: 0s; }
+.Aboutme:nth-child(2) { transition-delay: 0.1s; }
+.Aboutme:nth-child(3) { transition-delay: 0.18s; }
+.Aboutme:nth-child(4) { transition-delay: 0.26s; }
+.Aboutme:nth-child(5) { transition-delay: 0.34s; }
+
+/* Override old alternating slide-x */
+.Aboutme:nth-child(even) {
+  transform: translateY(32px);
+}
+.Aboutme:nth-child(even).show {
+  transform: translateY(0);
+}
+
+/* Glowing top edge on hover */
+.Aboutme::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 15%;
+  right: 15%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.Aboutme:hover::after {
+  opacity: 1;
+}
+
+.Aboutme:hover {
+  border-color: rgba(230,57,70,0.28);
+  box-shadow: 0 14px 44px rgba(0,0,0,0.55), 0 0 0 1px rgba(230,57,70,0.1);
+  transform: scale(1.01);
+  color: inherit;
+  border-radius: 12px;
+}
+
+/* Section headings */
+.Aboutme h2 {
+  font-family: 'Space Grotesk', Arial, sans-serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-left: 3px solid var(--accent);
+  padding-left: 12px;
+  text-shadow: none;
+}
+
+/* ─── Lists (scoped — never affects navbar) ─ */
+
+.Aboutme ul.tab {
+  padding: 0;
+  margin: 0;
+}
+
+.Aboutme ul li {
+  font-size: 0.88rem;
+  color: var(--soft);
+  padding: 9px 4px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  line-height: 1.55;
+  text-shadow: none;
+}
+
+.Aboutme ul li:last-child {
+  border-bottom: none;
+}
+
+.Aboutme ul li::before {
+  content: '›';
+  color: var(--accent);
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+/* ─── Download icon in list ──────────────── */
 .list-download-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   width: 24px;
   height: 24px;
-  margin-left: 10px;
-  background-color: transparent;
+  margin-left: auto;
+  background: transparent;
   border: none;
-  color: #b74b4b;
-  font-size: 18px;
+  color: var(--muted);
+  font-size: 0.85rem;
   cursor: pointer;
-  transition: color 0.3s ease, transform 0.2s ease;
+  transition: color 0.2s ease, transform 0.2s ease;
+  flex-shrink: 0;
 }
 
 .list-download-btn:hover {
-  color: #e74c3c;
+  color: var(--accent);
   transform: scale(1.2);
 }
 
-section:hover .list-download-btn {
-  color: #ffffff;
+/* Override the old hover that turned text black */
+.container-ab section:hover {
+  color: inherit;
 }
 
+/* ─── Scrollbar ──────────────────────────── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--card); border-radius: 3px; }
 
-
-/* =======================
-   🌐 Responsive Design
-   ======================= */
-
-/* Large Tablets & Small Laptops (max-width: 1200px) */
+/* ─── Responsive ─────────────────────────── */
 @media (max-width: 1200px) {
-  .header {
-    left: 60vw;
-  }
-
-  .timeline-section {
-    width: 85%;
-  }
-
-  .timeline-content h3 {
-    font-size: 1.2rem;
-  }
+  .header { left: 60vw; }
+  .timeline-section { width: 85%; }
+  .timeline-content h3 { font-size: 1.1rem; }
 }
 
-/* Tablets (max-width: 992px) */
 @media (max-width: 992px) {
   .header {
     position: static;
     text-align: center;
     margin-top: 20px;
   }
-
-  .download-btn,
-  .contact-btn {
+  .download-btn, .contact-btn {
     width: 160px;
     margin: 10px;
     font-size: 0.9rem;
   }
-
-  .timeline-section {
-    width: 90%;
-    padding: 15px;
-  }
-
-  .timeline-content {
-    padding: 12px 15px;
-  }
-
-  .timeline-content h3 {
-    font-size: 1.1rem;
-  }
-
-  .Aboutme h2 {
-    font-size: 1.4rem;
-  }
-
-  section {
-    padding: 15px;
-  }
+  .timeline-section { width: 90%; padding: 15px; }
+  .timeline-content { padding: 12px 15px; }
+  .timeline-content h3 { font-size: 1.1rem; }
+  .Aboutme h2 { font-size: 1.4rem; }
+  section { padding: 15px; }
+  .container-ab { grid-template-columns: 1fr; }
 }
 
-/* Mobile Devices (max-width: 768px) */
 @media (max-width: 768px) {
-  body {
-    font-size: 0.95rem;
-  }
-
+  body { font-size: 0.95rem; }
   .header {
     left: 0;
     display: flex;
@@ -331,108 +460,42 @@ section:hover .list-download-btn {
     align-items: center;
     gap: 10px;
   }
-
-  .download-btn,
-  .contact-btn {
-    display: none;
-  }
-
-  .timeline-section {
-    width: 95%;
-    padding: 10px;
-  }
-
-  .timeline {
-    border-left: 2px solid #e63946;
-    padding-left: 20px;
-  }
-
-  .timeline-dot {
-    width: 14px;
-    height: 14px;
-    left: -33px;
-  }
-
-  .timeline-content h3 {
-    font-size: 1rem;
-  }
-
-  .timeline-content p {
-    font-size: 0.9rem;
-  }
-
-  section {
-    margin: 15px 0;
-    padding: 15px;
-  }
-
-  .Aboutme h2 {
-    font-size: 1.2rem;
-  }
-
-  ul li {
-    font-size: 0.9rem;
-  }
+  .download-btn, .contact-btn { display: none; }
+  .timeline-section { width: 95%; padding: 10px; }
+  .timeline-dot { width: 14px; height: 14px; left: -33px; }
+  .timeline-content h3 { font-size: 1rem; }
+  .timeline-content p { font-size: 0.9rem; }
+  section { margin: 15px 0; padding: 15px; }
+  .Aboutme h2 { font-size: 1.2rem; }
+  ul li { font-size: 0.9rem; }
+  .container-ab { width: 95%; gap: 14px; }
 }
 
-/* Small Mobiles (max-width: 480px) */
 @media (max-width: 480px) {
-  .header {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .download-btn,
-  .contact-btn {
-
-    display: none;
-
-  }
-
-  .timeline-section h2,
-  .Aboutme h2 {
-    font-size: 1.1rem;
-  }
-
-  .timeline-content h3 {
-    font-size: 0.95rem;
-  }
-
-  .timeline-content p {
-    font-size: 0.85rem;
-  }
-
-  ul li {
-    font-size: 0.85rem;
-  }
-
-  section {
-    padding: 12px;
-  }
-
-  .timeline-dot {
-    left: -28px;
-  }
+  .header { flex-direction: column; align-items: center; }
+  .download-btn, .contact-btn { display: none; }
+  .timeline-section h2, .Aboutme h2 { font-size: 1.1rem; }
+  .timeline-content h3 { font-size: 0.95rem; }
+  .timeline-content p { font-size: 0.85rem; }
+  ul li { font-size: 0.85rem; }
+  section { padding: 12px; }
+  .Aboutme { padding: 14px; }
+  .timeline-dot { left: -28px; }
 }
 
-/* Extra Tall Screens (height > 2000px, e.g. your 1080×2400) */
 @media (max-width: 1080px) and (min-height: 2000px) {
-  .timeline-section {
-    margin-top: 80px;
-  }
+  .timeline-section { margin-top: 80px; }
+  .download-btn, .contact-btn { display: none; }
+  .header { top: 10px; }
+  section { padding: 25px; }
+}
 
-  .download-btn,
-  .contact-btn {
-
-    display: none;
-
-  }
-
-  .header {
-    top: 10px;
-  }
-
-  section {
-    padding: 25px;
+@media (prefers-reduced-motion: reduce) {
+  .timeline-dot::after { animation: none; }
+  .Aboutme, .Aboutme.show,
+  .Aboutme:nth-child(even), .Aboutme:nth-child(even).show {
+    transition: none;
+    opacity: 1;
+    transform: none;
   }
 }

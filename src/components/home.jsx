@@ -49,20 +49,18 @@ const Home = () => {
                             </a>
                         </div>
                         <div className="buttons">
-                            <a href="/assets/Documents/My_CV.pdf" download="Koushik_Bhowmick_CV.pdf" target="_blank" className="btn" data-text = "Download CV" rel="noopener noreferrer">
+                            <a href="/assets/My_CV.pdf" download="Koushik_Bhowmick_CV.pdf" target="_blank" className="btn" data-text="Download CV" rel="noopener noreferrer">
                                 Download CV
                             </a>
-
-
 
                         </div>
                     </div>
                     <div className="devpic">
                         <div className="flip_front">
-                            <img alt="koushik bhowmick" className="front" src="/assets/mee.jpeg" />
+                            <img alt="koushik bhowmick" className="front" src="/assets/mee.jpeg" decoding="async" />
                         </div>
                         <div className="flip_back">
-                            <img alt="koushik bhowmick" className="front" src="/assets/RICK.png" />
+                            <img alt="koushik bhowmick" className="front" src="/assets/RICK.png" decoding="async" />
                         </div>
                     </div>
                 </div>

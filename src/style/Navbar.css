@@ -6,12 +6,11 @@
     width: 100vw;
     padding: 1rem 9%;
     background-color: transparent;
-    filter: drop-shadow(10px);
     opacity: 1;
     z-index: 999;
-    backdrop-filter: none;
-    transition: backdrop-filter 0.3s ease;
     backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    transition: backdrop-filter 0.3s ease;
     border-bottom:0.1px solid #E5E4D1;
 }
 
