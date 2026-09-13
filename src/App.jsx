@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import Navbar from './components/Navbar';
@@ -9,10 +9,31 @@ import Contact from './components/contact';
 import Blogs from './components/blog';
 import Lenis from '@studio-freight/lenis';
 
+// Navigation order for directional slide animation
+const routeOrder = {
+    '/': 0,
+    '/about': 1,
+    '/skills': 2,
+    '/contact': 3,
+    '/blogs': 4,
+};
+
+// Tracks whether navigation is going forward (+1) or backward (-1)
+let currentNavDirection = 1;
+
 const animations = {
-    initial: { opacity: 0, x: 100 },
-    animate: { opacity: 1, x: 0 },
-    exit: { opacity: 0, x: -100 },
+    initial: () => ({
+        opacity: 0,
+        x: currentNavDirection > 0 ? 100 : -100,
+    }),
+    animate: {
+        opacity: 1,
+        x: 0,
+    },
+    exit: () => ({
+        opacity: 0,
+        x: currentNavDirection > 0 ? -100 : 100,
+    }),
 };
 
 const AnimatedPage = ({ children }) => {
@@ -22,7 +43,7 @@ const AnimatedPage = ({ children }) => {
             initial="initial"
             animate="animate"
             exit="exit"
-            transition={{ duration: 0.2 }}
+            transition={{ duration: 0.25, ease: 'easeInOut' }}
             style={{ width: '100%' }}
         >
             {children}
@@ -32,6 +53,17 @@ const AnimatedPage = ({ children }) => {
 
 const RouteContainer = () => {
     const location = useLocation();
+    const prevPathRef = useRef(location.pathname);
+
+    // Dynamically calculate navigation direction before animation runs:
+    // Moving next: slides right-to-left (+1)
+    // Moving previous: slides left-to-right (-1)
+    if (location.pathname !== prevPathRef.current) {
+        const prevIndex = routeOrder[prevPathRef.current] ?? 0;
+        const currIndex = routeOrder[location.pathname] ?? 0;
+        currentNavDirection = currIndex >= prevIndex ? 1 : -1;
+        prevPathRef.current = location.pathname;
+    }
 
     // Re-initialize Lenis on every route change so scroll height
     // is recalculated for the new page and scroll position resets to top.
