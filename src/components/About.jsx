@@ -3,6 +3,7 @@
 import React, { useEffect } from 'react';
 import { FaDownload, FaEnvelope, FaLightbulb, FaGraduationCap, FaTrophy, FaChalkboardTeacher, FaBookOpen } from 'react-icons/fa';
 import { FaArrowUpRightFromSquare } from 'react-icons/fa6';
+import { Link } from 'react-router-dom';
 import '../style/About.css';
 // import ScrollDown from '../JS/ScrollDownT';
 
