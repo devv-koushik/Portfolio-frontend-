@@ -1,10 +1,9 @@
 // frontend/src/components/About.jsx
 
 import React, { useEffect } from 'react';
-import { FaDownload, FaEnvelope, FaLightbulb, FaGraduationCap, FaTrophy, FaCalendarCheck, FaChalkboardTeacher, FaBookOpen } from 'react-icons/fa';
+import { FaDownload, FaEnvelope, FaLightbulb, FaGraduationCap, FaTrophy, FaChalkboardTeacher, FaBookOpen } from 'react-icons/fa';
 import { FaArrowUpRightFromSquare } from 'react-icons/fa6';
 import '../style/About.css';
-import { Link } from 'react-router-dom';
 // import ScrollDown from '../JS/ScrollDownT';
 
 const About = () => {
