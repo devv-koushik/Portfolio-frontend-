@@ -71,7 +71,7 @@ const DeveloperTerminal = () => {
         setCmdHistory((prev) => [...prev, trimmed]);
         setHistoryIdx(-1);
 
-        const [command, ...args] = trimmed.toLowerCase().split(' ');
+        const [command] = trimmed.toLowerCase().split(' ');
 
         // Add user command line to screen
         const newEntry = { type: 'user', text: `koushik@terminal:~$ ${trimmed}` };

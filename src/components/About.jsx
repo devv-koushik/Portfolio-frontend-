@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { 
     FaDownload, FaEnvelope, FaLightbulb, FaGraduationCap, 
-    FaTrophy, FaChalkboardTeacher, FaBookOpen, FaGithub,
-    FaExternalLinkAlt, FaMapMarkerAlt, FaClock, FaGlobeAmericas,
-    FaEye, FaCodeBranch, FaStar, FaFire, FaRobot, FaBrain
+    FaTrophy, FaBookOpen, FaGithub,
+    FaMapMarkerAlt, FaClock, FaGlobeAmericas,
+    FaEye, FaFire, FaRobot, FaBrain
 } from 'react-icons/fa';
 import { FaArrowUpRightFromSquare } from 'react-icons/fa6';
-import { SiPython, SiReact, SiMongodb, SiOpencv, SiFlask, SiTailwindcss, SiArduino } from 'react-icons/si';
+import { SiPython, SiReact, SiArduino } from 'react-icons/si';
 import { Link } from 'react-router-dom';
 import SpotlightCard from './SpotlightCard';
 import ResumeModal from './ResumeModal';

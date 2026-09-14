@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { FaPython, FaJava, FaHtml5, FaCss3Alt, FaReact, FaGitAlt, FaNodeJs, FaBrain, FaCheckCircle } from "react-icons/fa";
 import {
   SiC, SiCplusplus, SiJavascript, SiMysql, SiMongodb,
-  SiTensorflow, SiPytorch, SiOpencv, SiDjango, SiFlask,
+  SiTensorflow, SiPytorch, SiOpencv, SiFlask,
   SiArduino, SiPostman, SiTailwindcss
 } from "react-icons/si";
 import "../style/skill.css";
