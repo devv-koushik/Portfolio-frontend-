@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FaLinkedinIn, FaInstagram, FaFacebook, FaPaperPlane } from 'react-icons/fa';
+import { FaLinkedinIn, FaInstagram, FaFacebook, FaPaperPlane, FaCopy, FaCheck } from 'react-icons/fa';
 import { FaXTwitter, FaLocationDot, FaPhoneVolume } from 'react-icons/fa6';
 import { MdEmail } from "react-icons/md";
 import '../style/contact.css';
@@ -15,6 +15,13 @@ const Contact = () => {
 
     // State to manage UI feedback (loading, success, error)
     const [status, setStatus] = useState('');
+    const [copiedEmail, setCopiedEmail] = useState(false);
+
+    const handleCopyEmail = () => {
+        navigator.clipboard.writeText('koushikbhowmick04@gmail.com');
+        setCopiedEmail(true);
+        setTimeout(() => setCopiedEmail(false), 2000);
+    };
 
     // Lock all scroll on the contact page — no scrollbar wanted here
     useEffect(() => {
@@ -118,14 +125,34 @@ const Contact = () => {
                                     <p>+917003372615</p>
                                 </div>
                             </div>
-                            <div className="box">
+                            <div className="box email-box">
                                 <div className="icon">
                                     <b></b>
                                     <i><MdEmail /></i>
                                 </div>
                                 <div className="text">
                                     <h3>Email</h3>
-                                    <p>koushikbhowmick04@gmail.com</p>
+                                    <div className="email-copy-row">
+                                        <a href="mailto:koushikbhowmick04@gmail.com" className="email-link">
+                                            koushikbhowmick04@gmail.com
+                                        </a>
+                                        <button
+                                            type="button"
+                                            className={`copy-email-btn ${copiedEmail ? 'copied' : ''}`}
+                                            onClick={handleCopyEmail}
+                                            title="Copy email to clipboard"
+                                        >
+                                            {copiedEmail ? (
+                                                <>
+                                                    <FaCheck size={12} /> <span>Copied!</span>
+                                                </>
+                                            ) : (
+                                                <>
+                                                    <FaCopy size={12} /> <span>Copy</span>
+                                                </>
+                                            )}
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </>

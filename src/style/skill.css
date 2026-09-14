@@ -1,127 +1,231 @@
-/* ---------- Header: smaller, left-aligned, no big gaps ---------- */
-.skills-header {
-  text-align: left;
-  margin: 10px 0 12px 4%;
+/* =============================================
+   Skills.css — Harmonized Theme & Structured Cards
+   ============================================= */
+
+.skills-container {
+  width: 90vw;
+  max-width: 1250px;
+  margin: 105px auto 80px;
   padding: 0;
-  max-width: calc(100% - 8%);
+  position: relative;
+  z-index: 1;
+}
+
+/* Header */
+.skills-header {
+  text-align: center;
+  margin-bottom: 24px;
 }
 
 .skills-header h2 {
-  font-size: 1.5rem;
-  color: #b74b4b;
-  /* changed from #00ffe0 */
-  font-weight: 600;
-  margin: 0;
-  line-height: 1.05;
+  font-family: 'Space Grotesk', -apple-system, sans-serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 10px;
 }
 
-.skills-container {
-  padding: 20px;
-  margin: 60px 0;
+.skills-title-line {
+  width: 60px;
+  height: 3px;
+  background: #e63946;
+  margin: 0 auto 14px;
+  border-radius: 2px;
 }
 
-/* subtitle (small & tight) */
 .skills-header p {
-  color: #b0b0b0;
-  font-size: 0.95rem;
-  margin: 0;
-  padding: 0;
+  color: #94a3b8;
+  font-size: 1rem;
+  max-width: 620px;
+  margin: 0 auto;
+  line-height: 1.6;
 }
 
-/* ---------- Orb area: narrower margins and reduced height ---------- */
+/* Floating Physics Orbs Stage */
 .skills-stage {
   position: relative;
-  width: 94%;
-  max-width: 1200px;
-  height: 360px;
-  margin: 20px auto;
-  border-radius: 14px;
-  background: radial-gradient(circle at 50% 50%, #080808, #0f0f0f);
-  box-shadow: inset 0 0 40px rgba(255, 0, 72, 0.08);
-  /* red glow */
+  width: 100%;
+  height: 380px;
+  margin: 20px auto 40px;
+  border-radius: 18px;
+  background: radial-gradient(circle at 50% 50%, #0a0e17, #07090e);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 0 60px rgba(0, 0, 0, 0.8), 0 10px 30px rgba(0, 0, 0, 0.4);
   overflow: hidden;
 }
 
-/* Shrink the orbs themselves (logo + text) */
+/* Harmonized Floating Orb */
 .skill-circle {
   position: absolute;
-  width: 68px;
-  height: 68px;
+  width: 82px;
+  height: 82px;
   border-radius: 50%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: rgba(255, 0, 72, 0.04);
-  /* red tint */
-  border: 1px solid rgba(255, 0, 72, 0.18);
-  /* red border */
-  backdrop-filter: blur(6px);
+  background: rgba(18, 25, 38, 0.8);
+  border: 1.5px solid rgba(230, 57, 70, 0.28);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   cursor: pointer;
-  transition: transform 0.22s ease, box-shadow 0.22s ease;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5), inset 0 0 12px rgba(230, 57, 70, 0.1);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.skill-circle img {
-  width: 28px;
-  height: 28px;
-  margin-bottom: 2px;
-  filter: drop-shadow(0 0 6px rgba(255, 0, 72, 0.36)) brightness(1.1);
-  /* red glow */
+.skill-circle:hover {
+  background: rgba(26, 36, 54, 0.95);
+  border-color: #e63946;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7), 0 0 25px rgba(230, 57, 70, 0.55);
 }
 
-.skill-circle span {
+.orb-icon-wrapper {
+  font-size: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 3px;
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.15));
+  transition: transform 0.25s ease;
+}
+
+.skill-circle:hover .orb-icon-wrapper {
+  transform: scale(1.15);
+}
+
+.orb-name {
   font-size: 10px;
-  color: rgba(255, 180, 180, 0.9);
-  /* softer red-white text */
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  color: #e2e8f0;
+  letter-spacing: 0.02em;
+  text-align: center;
   line-height: 1;
-  margin: 0;
-  padding: 0;
 }
 
-/* ---------- Ensure bottom skill boxes are unchanged ---------- */
-.skills-table {
-  margin-top: 50px;
+/* Categorized Skills Grid */
+.skills-categories-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22px;
+  margin-top: 10px;
+}
+
+.skill-category-card {
+  background: #0f1522;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 24px 28px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.skill-category-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(230, 57, 70, 0.3);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6), 0 0 20px rgba(230, 57, 70, 0.1);
+}
+
+.cat-card-header {
+  margin-bottom: 18px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  padding-bottom: 14px;
+}
+
+.cat-card-header h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.25rem;
+  color: #ffffff;
+  margin: 0 0 6px;
+  font-weight: 700;
+}
+
+.cat-card-header p {
+  color: #94a3b8;
+  font-size: 0.84rem;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.cat-items-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 12px;
 }
 
-.skills-row {
+.cat-item-row {
   display: flex;
-  justify-content: center;
-  gap: 32px;
-  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
 }
 
-.skill-box {
-  background: linear-gradient(145deg, #080808 0%, #0f0f0f 100%);
-  border: 1px solid rgba(255, 0, 72, 0.12);
-  /* red border */
-  border-radius: 12px;
-  padding: 18px 22px;
-  width: 300px;
-  text-align: left;
-  font-family: 'Poppins', sans-serif;
+.item-name-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.item-check-icon {
+  color: #e63946;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+
+.item-title {
+  font-size: 0.9rem;
+  color: #e2e8f0;
+  font-weight: 500;
+}
+
+.item-proof-badge {
+  background: rgba(230, 57, 70, 0.08);
+  border: 1px solid rgba(230, 57, 70, 0.2);
+  color: #fca5a5;
+  font-size: 0.72rem;
+  font-family: 'Space Grotesk', sans-serif;
+  padding: 2px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+/* === Responsive Design === */
+@media (max-width: 900px) {
+  .skills-categories-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .skills-container {
+    margin: 85px auto 60px;
+  }
 }
 
 @media (max-width: 600px) {
-
+  .skills-stage {
+    height: 320px;
+  }
 
   .skill-circle {
-    width: 60px !important;
-    height: 60px !important;
+    width: 68px;
+    height: 68px;
   }
 
-  .skill-circle span {
-    font-size: 8px !important;
+  .orb-icon-wrapper {
+    font-size: 22px;
   }
 
-  .skill-circle>div {
-    font-size: 20px !important;
+  .orb-name {
+    font-size: 8px;
   }
 
-  .skills-stage {
-    height: 400px !important;
+  .cat-item-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
   }
-
 }

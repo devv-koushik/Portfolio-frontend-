@@ -1,0 +1,168 @@
+/* Resume Modal Styles */
+.resume-modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    background: rgba(4, 7, 12, 0.85);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    animation: resumeFadeIn 0.25s ease-out;
+}
+
+@keyframes resumeFadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.resume-modal-content {
+    background: #0d1117;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 14px;
+    width: 92vw;
+    max-width: 900px;
+    height: 88vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(230, 57, 70, 0.2);
+    animation: resumeSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes resumeSlideUp {
+    from {
+        transform: translateY(20px) scale(0.97);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+}
+
+.resume-modal-header {
+    background: #161b22;
+    padding: 12px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.resume-header-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.resume-header-title .dot {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.resume-header-title .dot.red { background: #ff5f56; }
+.resume-header-title .dot.yellow { background: #ffbd2e; }
+.resume-header-title .dot.green { background: #27c93f; }
+
+.resume-header-title h3 {
+    margin: 0 0 0 8px;
+    font-size: 0.95rem;
+    font-family: 'Space Grotesk', 'Fira Code', monospace;
+    font-weight: 500;
+    color: #e6edf3;
+}
+
+.resume-modal-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.resume-action-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.82rem;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.resume-action-btn.primary {
+    background: #e63946;
+    color: #ffffff;
+    border: 1px solid #e63946;
+}
+
+.resume-action-btn.primary:hover {
+    background: #d62839;
+    box-shadow: 0 0 14px rgba(230, 57, 70, 0.5);
+}
+
+.resume-action-btn.secondary {
+    background: rgba(255, 255, 255, 0.06);
+    color: #c9d1d9;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.resume-action-btn.secondary:hover {
+    background: rgba(255, 255, 255, 0.12);
+    color: #ffffff;
+}
+
+.resume-close-btn {
+    background: transparent;
+    border: none;
+    color: #8b949e;
+    cursor: pointer;
+    padding: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.resume-close-btn:hover {
+    color: #ff5f56;
+    background: rgba(255, 95, 86, 0.15);
+}
+
+.resume-modal-body {
+    flex: 1;
+    background: #090d13;
+    overflow: hidden;
+}
+
+.resume-iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+@media (max-width: 600px) {
+    .resume-modal-content {
+        width: 96vw;
+        height: 92vh;
+    }
+    .resume-action-btn span {
+        display: none;
+    }
+    .resume-action-btn {
+        padding: 6px 8px;
+    }
+}

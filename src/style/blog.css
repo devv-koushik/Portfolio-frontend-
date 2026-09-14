@@ -3,6 +3,13 @@ body {
   color: #ddd;
 }
 
+.blog-page-wrapper {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
 .blogcontainer {
   /* display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));

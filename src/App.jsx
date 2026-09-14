@@ -7,6 +7,7 @@ import About from './components/About';
 import Skills from './components/skill';
 import Contact from './components/contact';
 import Blogs from './components/blog';
+import DeveloperTerminal from './components/DeveloperTerminal';
 import Lenis from '@studio-freight/lenis';
 
 // Navigation order for directional slide animation
@@ -111,6 +112,7 @@ const App = () => {
         <Router>
             <Navbar />
             <RouteContainer />
+            <DeveloperTerminal />
         </Router>
     );
 };

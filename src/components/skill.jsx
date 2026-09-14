@@ -1,52 +1,80 @@
 import React, { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { FaPython, FaJava, FaHtml5, FaCss3Alt, FaReact, FaGitAlt } from "react-icons/fa";
-import { SiC, SiCplusplus, SiJavascript, SiMysql, SiMongodb, SiTensorflow, SiPytorch, SiOpencv ,SiDjango,
-  SiFlask } from "react-icons/si";
+import { FaPython, FaJava, FaHtml5, FaCss3Alt, FaReact, FaGitAlt, FaNodeJs, FaBrain, FaCheckCircle } from "react-icons/fa";
+import {
+  SiC, SiCplusplus, SiJavascript, SiMysql, SiMongodb,
+  SiTensorflow, SiPytorch, SiOpencv, SiDjango, SiFlask,
+  SiArduino, SiPostman, SiTailwindcss
+} from "react-icons/si";
 import "../style/skill.css";
 
 const SKILLS = [
-  { name: "Python", icon: <FaPython color="#3776AB" /> },
-  { name: "C", icon: <SiC color="#A8B9CC" /> },
-  { name: "C++", icon: <SiCplusplus color="#00599C" /> },
-  { name: "Java", icon: <FaJava color="#007396" /> },
-  { name: "HTML", icon: <FaHtml5 color="#E34F26" /> },
-  { name: "CSS", icon: <FaCss3Alt color="#1572B6" /> },
-  { name: "JavaScript", icon: <SiJavascript color="#F7DF1E" /> },
-  { name: "React", icon: <FaReact color="#61DAFB" /> },
-  { name: "MySQL", icon: <SiMysql color="#4479A1" /> },
-  { name: "MongoDB", icon: <SiMongodb color="#47A248" /> },
-  { name: "Git", icon: <FaGitAlt color="#F05032" /> },
-  { name: "TensorFlow", icon: <SiTensorflow color="#FF6F00" /> },
-  { name: "PyTorch", icon: <SiPytorch color="#EE4C2C" /> },
-  { name: "OpenCV", icon: <SiOpencv color="#5C3EE8" /> },
-  { name: "Django", icon: <SiDjango color="#217555ff" /> },
-  { name: "Flask", icon: <SiFlask color="#A8B9CC" /> },
+  { name: "Python", icon: <FaPython color="#3b82f6" /> },
+  { name: "C", icon: <SiC color="#94a3b8" /> },
+  { name: "C++", icon: <SiCplusplus color="#0284c7" /> },
+  { name: "Java", icon: <FaJava color="#ea580c" /> },
+  { name: "JavaScript", icon: <SiJavascript color="#eab308" /> },
+  { name: "React", icon: <FaReact color="#38bdf8" /> },
+  { name: "HTML5", icon: <FaHtml5 color="#f97316" /> },
+  { name: "CSS3", icon: <FaCss3Alt color="#2563eb" /> },
+  { name: "Tailwind", icon: <SiTailwindcss color="#06b6d4" /> },
+  { name: "Node.js", icon: <FaNodeJs color="#22c55e" /> },
+  { name: "MongoDB", icon: <SiMongodb color="#16a34a" /> },
+  { name: "MySQL", icon: <SiMysql color="#0284c7" /> },
+  { name: "Git", icon: <FaGitAlt color="#f43f5e" /> },
+  { name: "YOLO / CNN", icon: <FaBrain color="#ec4899" /> },
+  { name: "OpenCV", icon: <SiOpencv color="#8b5cf6" /> },
+  { name: "TensorFlow", icon: <SiTensorflow color="#f97316" /> },
+  { name: "PyTorch", icon: <SiPytorch color="#ef4444" /> },
+  { name: "Flask", icon: <SiFlask color="#cbd5e1" /> },
+  { name: "Arduino", icon: <SiArduino color="#06b6d4" /> },
+  { name: "Postman", icon: <SiPostman color="#f97316" /> },
 ];
 
-
-const ROWS = [
-  [
-    { title: "Programming Languages", items: ["Python", "C", "C++"] },
-    { title: "Web Technologies", items: ["HTML", "CSS", "JavaScript", "React"] },
-    { title: "Databases & Tools", items: ["MySQL", "MongoDB", "Git"] },
-    { title: "Frameworks & Libraries", items: ["TensorFlow", "PyTorch", "OpenCV"] },
-  ],
-  [
-    {
-      title: "Core Concepts",
-      items: [
-        "Data Structures & Algorithms",
-        "Machine Learning",
-        "Deep Learning (CNN)",
-        "YOLO Object Detection",
-      ],
-    },
-    {
-      title: "Soft Skills",
-      items: ["Teamwork", "Problem Solving", "Creativity", "Adaptability", "Communication"],
-    },
-  ],
+const SKILL_CATEGORIES = [
+  {
+    category: "Core Stack (Daily Use)",
+    description: "Languages and core frontend technologies used daily for architecture and development.",
+    items: [
+      { name: "Python", proof: "Daily Digest & Forest Fire AI" },
+      { name: "JavaScript (ES6+) & React 19", proof: "Portfolio & PassOP App" },
+      { name: "C & C++", proof: "DSA & Smart Glasses Embedded" },
+      { name: "Git & Version Control", proof: "Active shipping at @devv-koushik" },
+      { name: "HTML5 & Modern CSS / Tailwind", proof: "Responsive Web Apps" },
+    ],
+  },
+  {
+    category: "AI, ML & Computer Vision",
+    description: "Neural network architectures, computer vision pipelines, and optimization algorithms.",
+    items: [
+      { name: "YOLOv8 & MobileNet-SSD", proof: "Forest Fire Real-time Alert AI" },
+      { name: "OpenCV Computer Vision", proof: "Image & video stream processing" },
+      { name: "Deep Learning (CNNs)", proof: "Object classification & detection" },
+      { name: "TensorFlow & PyTorch", proof: "Model training and inference" },
+      { name: "Constraint Solvers / Heuristics", proof: "SIH 2026 UniScheduler AI" },
+    ],
+  },
+  {
+    category: "Backend & Cloud Databases",
+    description: "API servers, asynchronous queues, and persistent data layers.",
+    items: [
+      { name: "Node.js & Express", proof: "PassOP backend server" },
+      { name: "Flask & Python REST APIs", proof: "Forest Fire real-time inference API" },
+      { name: "MongoDB & Mongoose", proof: "Encrypted password storage & blogs" },
+      { name: "MySQL & Relational DBs", proof: "Structured schemas & queries" },
+      { name: "Postman & API Design", proof: "Endpoint testing & verification" },
+    ],
+  },
+  {
+    category: "Hardware, IoT & DevOps",
+    description: "Embedded microcontrollers, hardware sensors, deployment pipelines, and developer tooling.",
+    items: [
+      { name: "Arduino & Ultrasonic Sensors", proof: "Smart Assistive Glasses Prototype" },
+      { name: "Linux / Bash Shell", proof: "Environment scripts & automation" },
+      { name: "Vercel & Render Cloud", proof: "Production CI/CD deployments" },
+      { name: "VS Code & Debugging Tooling", proof: "Daily development environment" },
+    ],
+  },
 ];
 
 export default function Skills() {
@@ -63,7 +91,7 @@ export default function Skills() {
       placed.some((p) => {
         const dx = p.x - x;
         const dy = p.y - y;
-        return Math.sqrt(dx * dx + dy * dy) < p.size / 2 + size / 2 + 20;
+        return Math.sqrt(dx * dx + dy * dy) < p.size / 2 + size / 2 + 15;
       });
 
     circles.forEach((circle) => {
@@ -76,15 +104,15 @@ export default function Skills() {
       } while (isOverlapping(x, y, size) && tries < 150);
 
       placed.push({ x, y, size });
-      circle.style.left = `${x}px`;
-      circle.style.top = `${y}px`;
+      circle.style.left = `${Math.max(10, x)}px`;
+      circle.style.top = `${Math.max(10, y)}px`;
 
-      const dx = (Math.random() - 0.5) * 100;
-      const dy = (Math.random() - 0.5) * 100;
+      const dx = (Math.random() - 0.5) * 80;
+      const dy = (Math.random() - 0.5) * 80;
       circle.animate(
         [{ transform: "translate(0, 0)" }, { transform: `translate(${dx}px, ${dy}px)` }],
         {
-          duration: 5000 + Math.random() * 2000,
+          duration: 4500 + Math.random() * 2000,
           direction: "alternate",
           iterations: Infinity,
           easing: "ease-in-out",
@@ -100,31 +128,22 @@ export default function Skills() {
         className="skills-header"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1 }}
+        transition={{ duration: 0.8 }}
       >
-        <h2 style={{ fontSize: '3rem', color: '#ef4444', fontWeight: 600, marginBottom: '0.75rem' }}>My Skills</h2>
-        <div style={{ width: '7rem', height: '2px', background: '#ef4444', margin: '0 auto 1.5rem' }}></div>
-        <p style={{ color: '#9ca3af', fontSize: '1.125rem', maxWidth: '36rem', margin: '0 auto' }}>
-          ✨ Technical expertise blended with creativity — explore my core competencies below.
+        <h2>Technical Stack & Expertise</h2>
+        <div className="skills-title-line"></div>
+        <p>
+          Harmonized competencies across Artificial Intelligence, Computer Vision, Full-Stack Web Development, and Embedded IoT.
         </p>
       </motion.div>
 
-      {/* Floating Orbs */}
+      {/* Floating Physics Orbs Stage */}
       <motion.div
-        className="skills-stage relative mx-auto mb-20"
+        className="skills-stage"
         ref={stageRef}
-        initial={{ opacity: 0, scale: 0.9 }}
+        initial={{ opacity: 0, scale: 0.95 }}
         whileInView={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1.2, ease: "easeOut" }}
-        style={{
-          width: "100%",
-          height: "550px",
-          borderRadius: "25px",
-          background: "radial-gradient(circle at 50% 50%, #0a0a0a, #101010)",
-          overflow: "hidden",
-          boxShadow: "inset 0 0 60px rgba(0,255,255,0.07)",
-          position: "relative",
-        }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
       >
         {SKILLS.map((s, i) => (
           <motion.div
@@ -132,90 +151,51 @@ export default function Skills() {
             className="skill-circle"
             initial={{ opacity: 0, scale: 0 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: i * 0.06, duration: 0.5, ease: "easeOut" }}
+            transition={{ delay: i * 0.04, duration: 0.4, ease: "easeOut" }}
             whileHover={{
-              scale: 1.3,
-              boxShadow: "0 0 35px 10px rgba(0,255,255,0.6)",
-              background: "rgba(0,255,255,0.12)",
-            }}
-            style={{
-              width: "100px",
-              height: "100px",
-              borderRadius: "50%",
-              position: "absolute",
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              alignItems: "center",
-              background: "rgba(0,255,255,0.06)",
-              border: "1px solid rgba(147, 218, 49, 0.25)",
-              backdropFilter: "blur(8px)",
-              cursor: "pointer",
-              transition: "box-shadow 0.4s ease, background 0.4s ease",
+              scale: 1.25,
+              zIndex: 10,
             }}
           >
-            {/* 💡 CORRECTION: Render s.icon directly instead of using motion.img with s.logo */}
-            <motion.div
-              style={{
-                width: "40px",
-                height: "40px",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                fontSize: "40px", // Size the icon using font-size
-                filter: "drop-shadow(0 0 8px rgba(0,255,255,0.4))",
-                marginBottom: "5px",
-              }}
-              whileHover={{
-                filter: "drop-shadow(0 0 12px rgba(0,255,255,0.9)) brightness(1.6)",
-                rotate: [0, 6, -6, 0],
-                transition: { duration: 0.5 },
-              }}
-            >
-              {s.icon} {/* This renders the React Icon component */}
-            </motion.div>
-            
-            <span
-              style={{
-                color: "rgba(255,200,200,0.9)",
-                fontSize: "13px",
-                fontWeight: 500,
-                letterSpacing: "0.3px",
-              }}
-            >
-              {s.name}
-            </span>
+            <div className="orb-icon-wrapper">
+              {s.icon}
+            </div>
+            <span className="orb-name">{s.name}</span>
           </motion.div>
         ))}
       </motion.div>
 
-      {/* Skills Table */}
-      <div className="skills-table">
-        {ROWS.map((row, rowIndex) => (
-          <div key={rowIndex} className="skills-row">
-            {row.map((col, colIndex) => (
-              <motion.div
-                key={col.title}
-                className="skill-box"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                whileHover={{ scale: 1.05 }}
-                transition={{
-                  duration: 0.6,
-                  delay: (rowIndex + colIndex) * 0.1,
-                }}
-              >
-                <h3>{col.title}</h3>
-                <ul>
-                  {col.items.map((item, i) => (
-                    <motion.li key={i} whileHover={{ x: 6, color: "#ff0048" }}>
-                      {item}
-                    </motion.li>
-                  ))}
-                </ul>
-              </motion.div>
-            ))}
-          </div>
+      {/* Structured Skills Categories with Practical Proof Badges */}
+      <div className="skills-categories-grid">
+        {SKILL_CATEGORIES.map((cat, idx) => (
+          <motion.div
+            key={cat.category}
+            className="skill-category-card"
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: idx * 0.1 }}
+          >
+            <div className="cat-card-header">
+              <h3>{cat.category}</h3>
+              <p>{cat.description}</p>
+            </div>
+            <ul className="cat-items-list">
+              {cat.items.map((item) => (
+                <li key={item.name} className="cat-item-row">
+                  <div className="item-name-wrap">
+                    <FaCheckCircle className="item-check-icon" />
+                    <span className="item-title">{item.name}</span>
+                  </div>
+                  {item.proof && (
+                    <span className="item-proof-badge" title="Applied in production / project">
+                      {item.proof}
+                    </span>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </motion.div>
         ))}
       </div>
     </section>

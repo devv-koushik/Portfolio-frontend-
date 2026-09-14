@@ -63,38 +63,37 @@ const Button = ({ initialLikes, blogId }) => {
 // --- End of Button Component & StyledWrapper ---
 
 const blogPosts = [
-    // Adding an initial 'likes' property to simulate dynamic data
     {
         id: '1',
-        title: 'Balancing Work and Life: A Creative’s Perspective',
-        summary: 'Life as a creative professional is a blend of passion, hard work, and finding balance. In this lifestyle blog...',
-        fullText: 'Life as a creative professional is a blend of passion, hard work, and finding balance. In this lifestyle blog, I share my experiences juggling projects, personal life, and self-care. From productivity hacks to travel adventures, each post offers a glimpse into my world. Join me as I navigate the highs and lows of a creative lifestyle, and find inspiration to live your best life.',
-        image:  '/assets/me1.jpg',
-        initialLikes: 68 // Example starting likes
+        title: 'Building a Smart Glasses Prototype with Arduino & Ultrasonic Sensors',
+        summary: 'Assistive IoT hardware can transform mobility for the visually impaired. Here is how I designed an ultrasonic sensor array with haptic and audio telemetry...',
+        fullText: 'Assistive IoT hardware can transform mobility for the visually impaired. In this project, I engineered a prototype combining Arduino microcontrollers, HC-SR04 ultrasonic distance sensors, and haptic feedback actuators. The system continuously polls peripheral distance, detects obstacles within a 2-meter proximity cone, and triggers intuitive pulse frequencies to guide the user safely. Building this taught me low-level C++ timing, power-efficient sensor polling, and human-centric hardware design.',
+        image: '/assets/blog1.png',
+        initialLikes: 84
     },
     {
         id: '2',
-        title: 'Architectural Marvels: Behind the Scenes of My Projects',
-        summary: 'Welcome to my professional showcase blog, where I delve into the details of my architectural projects. Each post provides an in-depth look at the design process...',
-        fullText: 'Welcome to my professional showcase blog, where I delve into the details of my architectural projects. Each post provides an in-depth look at the design process, from initial concepts to final execution. Discover the challenges faced, solutions implemented, and the creative decisions that shaped each project. This blog is a testament to my dedication to creating functional and aesthetically pleasing spaces.',
+        title: 'Automating Daily Digest Emails with Python & Pandas',
+        summary: 'Tired of information overload, I engineered an automated cron pipeline that aggregates tech news, weather, and market signals into a clean daily brief...',
+        fullText: 'In our hyperconnected world, information overload can derail productivity. To combat this, I built an automated Daily Digest engine using Python, BeautifulSoup, Pandas, and SMTP. The script schedules daily crons, scrapes curated headlines, structures the data into tabular analytics, and compiles a clean, responsive HTML email briefing. It was an exciting deep-dive into Python automation, data cleaning, and production scheduling.',
         image: '/assets/blog2.jpg',
-        initialLikes: 15
+        initialLikes: 62
     },
     {
         id: '3',
-        title: 'Mastering Web Development: Tips, Tricks, and Tutorials',
-        summary: 'As a web developer, I am passionate about sharing my knowledge and helping others grow in this dynamic field. This blog is a resource for aspiring developers, offering tutorials...',
-        fullText: 'As a web developer, I am passionate about sharing my knowledge and helping others grow in this dynamic field. This blog is a resource for aspiring developers, offering tutorials, coding tips, and insights into the latest industry trends. Whether you’re a beginner or looking to refine your skills, you’ll find valuable information to enhance your web development journey',
-        image: '/assets/blog1.png',
-        initialLikes: 42
+        title: 'Demystifying YOLO Object Detection & CNNs for Real-Time Vision',
+        summary: 'How modern single-stage object detectors process video streams at 30+ FPS for real-world applications like our AI Forest Fire Detection system...',
+        fullText: 'Computer vision has evolved from manual feature engineering to deep Convolutional Neural Networks. During our work on the AI Forest Fire Detection system, we implemented YOLO (You Only Look Once) to achieve real-time flame and smoke classification. By framing detection as a single regression problem, YOLO processes frames at high inference speeds, enabling rapid alert dispatch. This post breaks down transfer learning, anchor boxes, and bounding box regression for real-world deployments.',
+        image: '/assets/me1.jpg',
+        initialLikes: 95
     },
     {
         id: '4',
-        title: 'Visual Storytelling: My Photography Portfolio',
-        summary: 'Photography is more than just capturing moments; it’s about telling stories through visuals. This blog showcases my portfolio, featuring a collection of my best work...',
-        fullText: 'Photography is more than just capturing moments; it’s about telling stories through visuals. This blog showcases my portfolio, featuring a collection of my best work. Each photograph is accompanied by the story behind it, the techniques used, and the emotions it evokes. Dive into a world of visual storytelling and discover the beauty in everyday moments',
+        title: 'How I Optimized Physics Animations with Matter.js and React',
+        summary: 'Bringing canvas physics to life in React without dropping frames. A breakdown of rigid body simulation, gravity scaling, and responsive canvas sizing...',
+        fullText: 'Interactive physics can make a developer portfolio unforgettable, but poorly optimized animation loops can throttle CPU and battery life. For my hero background, I implemented a 2D rigid-body simulation using Matter.js, integrated with React component lifecycles. By decoupling heavy DOM renders, capping simulation sub-steps, handling window resize debounces, and disabling the engine gracefully on mobile devices, we maintained a butter-smooth 60 FPS without UI jank.',
         image: '/assets/blog4.jpg',
-        initialLikes: 29
+        initialLikes: 73
     }
 ];
 
@@ -152,12 +151,12 @@ const Blog = () => {
     };
 
     return (
-        <div className="main">
+        <div className="blog-page-wrapper">
             <div className="blogcontainer">
                 <section className="blog-hero">
                     <h1>Dreams, Code & Coffee – By Koushik</h1>
                     <p>
-                        Thoughts, tips, and stories on web development, creativity, and life.
+                        Technical deep-dives, hardware experiments, and architectural insights across Artificial Intelligence, Computer Vision, and Full-Stack Engineering.
                     </p>
                 </section>
 

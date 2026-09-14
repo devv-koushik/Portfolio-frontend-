@@ -1,0 +1,405 @@
+/* Developer Terminal Floating Button */
+.terminal-float-btn {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 9000;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(15, 20, 28, 0.85);
+    border: 1px solid rgba(230, 57, 70, 0.35);
+    color: #e2e8f0;
+    padding: 9px 15px;
+    border-radius: 9999px;
+    cursor: pointer;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5), 0 0 16px rgba(230, 57, 70, 0.2);
+    font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.terminal-float-btn:hover {
+    transform: translateY(-3px) scale(1.03);
+    border-color: #e63946;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7), 0 0 24px rgba(230, 57, 70, 0.45);
+    color: #ffffff;
+}
+
+.term-btn-icon {
+    color: #e63946;
+    display: flex;
+    font-size: 0.9rem;
+}
+
+.term-btn-shortcut {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    color: #94a3b8;
+    font-family: 'Fira Code', monospace;
+}
+
+/* Terminal Modal Overlay */
+.terminal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    background: rgba(5, 8, 14, 0.8);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    animation: termOverlayFade 0.2s ease-out;
+}
+
+@keyframes termOverlayFade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Terminal Window */
+.terminal-window {
+    width: 90vw;
+    max-width: 820px;
+    height: 540px;
+    background: #0b0f17;
+    border: 1px solid rgba(230, 57, 70, 0.25);
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85), 0 0 35px rgba(230, 57, 70, 0.15);
+    font-family: 'Fira Code', 'Courier New', monospace;
+    animation: termSlideIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: all 0.3s ease;
+}
+
+.terminal-window.maximized {
+    width: 96vw;
+    max-width: 96vw;
+    height: 92vh;
+}
+
+@keyframes termSlideIn {
+    from {
+        transform: translateY(24px) scale(0.96);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+}
+
+/* Title Bar */
+.term-titlebar {
+    background: #121824;
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.term-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.term-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: opacity 0.15s ease;
+}
+
+.term-dot:hover {
+    opacity: 0.8;
+}
+
+.term-dot.close { background: #ff5f56; }
+.term-dot.minimize { background: #ffbd2e; }
+.term-dot.maximize { background: #27c93f; }
+
+.term-title {
+    font-size: 0.82rem;
+    color: #94a3b8;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    user-select: none;
+}
+
+.term-title-icon {
+    color: #e63946;
+}
+
+.term-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.term-hdr-btn {
+    background: transparent;
+    border: none;
+    color: #64748b;
+    cursor: pointer;
+    padding: 4px;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    transition: all 0.15s ease;
+}
+
+.term-hdr-btn:hover {
+    color: #e2e8f0;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.term-hdr-btn.close:hover {
+    color: #ff5f56;
+}
+
+/* Quick Run Bar */
+.term-quick-bar {
+    background: #0e1420;
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.term-quick-label {
+    font-size: 0.72rem;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+}
+
+.term-quick-pill {
+    background: rgba(230, 57, 70, 0.08);
+    border: 1px solid rgba(230, 57, 70, 0.22);
+    color: #f87171;
+    font-size: 0.74rem;
+    font-family: 'Fira Code', monospace;
+    padding: 2px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.term-quick-pill:hover {
+    background: rgba(230, 57, 70, 0.22);
+    border-color: #e63946;
+    color: #ffffff;
+    transform: translateY(-1px);
+}
+
+/* Terminal Screen Body */
+.term-body {
+    flex: 1;
+    padding: 16px;
+    overflow-y: auto;
+    background: #080b11;
+    color: #cbd5e1;
+    font-size: 0.88rem;
+    line-height: 1.6;
+}
+
+.term-line {
+    margin-bottom: 8px;
+}
+
+.term-line.system {
+    color: #10b981;
+    white-space: pre-wrap;
+    font-size: 0.82rem;
+}
+
+.term-line.user {
+    color: #38bdf8;
+    font-weight: 600;
+}
+
+.term-line.error {
+    color: #f87171;
+}
+
+.term-pre {
+    margin: 0;
+    font-family: inherit;
+    white-space: pre-wrap;
+}
+
+/* Command Help Table */
+.term-table {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 6px;
+    padding: 10px 14px;
+    margin: 4px 0;
+}
+
+.term-help-title,
+.term-accent-title {
+    color: #f59e0b;
+    font-weight: 600;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+}
+
+.term-help-row {
+    display: flex;
+    gap: 16px;
+    padding: 3px 0;
+}
+
+.term-help-cmd {
+    color: #38bdf8;
+    font-weight: 600;
+    min-width: 90px;
+}
+
+.term-help-desc {
+    color: #94a3b8;
+}
+
+/* Projects in terminal */
+.term-proj-item {
+    background: rgba(255, 255, 255, 0.02);
+    border-left: 3px solid #e63946;
+    padding: 8px 12px;
+    margin: 8px 0;
+    border-radius: 0 6px 6px 0;
+}
+
+.term-proj-item p {
+    margin: 4px 0;
+    color: #94a3b8;
+    font-size: 0.82rem;
+}
+
+.term-proj-item a {
+    color: #38bdf8;
+    text-decoration: none;
+    font-size: 0.8rem;
+}
+
+.term-proj-item a:hover {
+    text-decoration: underline;
+}
+
+.term-proj-item .badge {
+    display: inline-block;
+    padding: 2px 6px;
+    font-size: 0.68rem;
+    border-radius: 3px;
+    margin-right: 6px;
+    font-weight: 600;
+}
+
+.term-proj-item .badge.ai { background: rgba(16, 185, 129, 0.15); color: #34d399; }
+.term-proj-item .badge.hack { background: rgba(245, 158, 11, 0.15); color: #fbbf24; }
+.term-proj-item .badge.web { background: rgba(56, 189, 248, 0.15); color: #38bdf8; }
+.term-proj-item .badge.auto { background: rgba(168, 85, 247, 0.15); color: #c084fc; }
+.term-proj-item .badge.iot { background: rgba(236, 72, 153, 0.15); color: #f472b6; }
+
+/* Skills & Bio box */
+.term-skills-box,
+.term-bio-box,
+.term-contact-box {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 6px;
+    padding: 10px 14px;
+    margin: 6px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.term-contact-box a {
+    color: #38bdf8;
+    text-decoration: none;
+}
+
+.term-contact-box a:hover {
+    text-decoration: underline;
+}
+
+/* Active Prompt & Input */
+.term-input-line {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 6px;
+}
+
+.term-prompt {
+    color: #10b981;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.term-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #f1f5f9;
+    font-family: inherit;
+    font-size: 0.88rem;
+    caret-color: #e63946;
+}
+
+/* Matrix Mode */
+.terminal-window.matrix-mode .term-body {
+    color: #22c55e;
+    text-shadow: 0 0 4px rgba(34, 197, 94, 0.6);
+}
+
+.terminal-window.matrix-mode .term-line.user {
+    color: #4ade80;
+}
+
+.terminal-window.matrix-mode .term-prompt {
+    color: #86efac;
+}
+
+@media (max-width: 640px) {
+    .terminal-float-btn {
+        bottom: 16px;
+        right: 16px;
+        padding: 8px 12px;
+    }
+    .term-btn-shortcut {
+        display: none;
+    }
+    .terminal-window {
+        width: 95vw;
+        height: 85vh;
+    }
+    .term-quick-bar {
+        overflow-x: auto;
+        white-space: nowrap;
+        padding: 6px 12px;
+    }
+}
