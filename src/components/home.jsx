@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Helmet } from 'react-helmet-async';
 import { FaGithub, FaLinkedinIn, FaInstagram, FaEye } from 'react-icons/fa';
 import { FaXTwitter } from 'react-icons/fa6';
 import TypingEffect from '../JS/TypingEffect';
@@ -33,6 +34,11 @@ const Home = () => {
 
     return (
         <div className="home-wrapper">
+            <Helmet>
+                <title>Home - Koushik Bhowmick | Full-Stack & AI Developer</title>
+                <meta name="description" content="Koushik Bhowmick's Portfolio - Explore projects, skills, and the interactive developer terminal." />
+            </Helmet>
+
             {!isMobile && <MatterCanvas />}
 
             <div className="main">
@@ -95,7 +101,7 @@ const Home = () => {
                             transform: `perspective(1000px) rotateX(${tilt.rotX}deg) rotateY(${tilt.rotY}deg)`,
                         }}
                     >
-                        <img alt="Koushik Bhowmick" src="/assets/mee.jpeg" decoding="async" />
+                        <img alt="Koushik Bhowmick" src="/assets/mee.webp" decoding="async" />
                     </div>
                 </div>
             </div>

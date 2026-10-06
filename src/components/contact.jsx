@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { FaLinkedinIn, FaInstagram, FaFacebook, FaPaperPlane, FaCopy, FaCheck } from 'react-icons/fa';
 import { FaXTwitter, FaLocationDot, FaPhoneVolume } from 'react-icons/fa6';
 import { MdEmail } from "react-icons/md";
@@ -10,7 +11,8 @@ const Contact = () => {
         name: '',
         email: '',
         phone: '',
-        message: ''
+        message: '',
+        botCheck: ''
     });
 
     // State to manage UI feedback (loading, success, error)
@@ -65,7 +67,7 @@ const Contact = () => {
             if (response.ok) {
                 console.log('Submission successful!');
                 setStatus('success');
-                setFormData({ name: '', email: '', phone: '', message: '' });
+                setFormData({ name: '', email: '', phone: '', message: '', botCheck: '' });
             } else {
                 console.error('Submission failed with status:', response.status);
                 setStatus('error');
@@ -88,9 +90,13 @@ const Contact = () => {
 
     return (
         <>
+            <Helmet>
+                <title>Contact - Koushik Bhowmick | Get in Touch</title>
+                <meta name="description" content="Reach out to Koushik Bhowmick for collaborations, full-stack web development projects, or AI engineering opportunities." />
+            </Helmet>
             <section className="contact">
                 <div className="content">
-                    <h2>contact us</h2>
+                    <h2>contact me</h2>
                     <p>
                         Feel free to reach out for collaborations, project discussions, or any
                         exciting opportunities.
@@ -158,7 +164,7 @@ const Contact = () => {
                         </>
 
                         {/* Social Links */}
-                        <h2 className="txt">connect with us</h2>
+                        <h2 className="txt">connect with me</h2>
                         <ul className="sci">
                             <li><a href='https://www.facebook.com/'><FaFacebook size={24} color="#fff" /></a></li>
                             <li><a href='https://www.twitter.com/'><FaXTwitter size={24} color="#fff" /></a></li>
@@ -178,8 +184,12 @@ const Contact = () => {
                                     value={formData.name} onChange={handleChange} />
                                 <span>Full Name</span>
                             </div>
+                            
+                            {/* Honeypot Field */}
+                            <input type="text" name="botCheck" style={{ display: 'none' }} value={formData.botCheck} onChange={handleChange} tabIndex="-1" autoComplete="off" />
+
                             <div className="inputBox">
-                                <input id="Email" name="email" required type="text"
+                                <input id="Email" name="email" required type="email"
                                     value={formData.email} onChange={handleChange} />
                                 <span>Email</span>
                                 <div className="form-text" id="emailHelp">
@@ -187,9 +197,9 @@ const Contact = () => {
                                 </div>
                             </div>
                             <div className="inputBox">
-                                <input id="phone" name="phone" required type="text"
+                                <input id="phone" name="phone" type="tel"
                                     value={formData.phone} onChange={handleChange} />
-                                <span>Phone No.</span>
+                                <span>Phone No. (Optional)</span>
                             </div>
                             <div className="inputBox" id="scroll">
                                 <textarea name="message" required

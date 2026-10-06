@@ -1,4 +1,5 @@
-import React, { useState  } from 'react';
+import React, { useState, useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
 import '../style/blog.css';
 // import ScrollDown from '../JS/ScrollDownT';
 
@@ -8,7 +9,7 @@ import '../style/blog.css';
 // import blog1 from '../assets/blog1.png';
 
 
-const Button = ({ initialLikes, blogId }) => {
+const Button = ({ initialLikes, blogId, backendLikes }) => {
     // Check if current user has liked this post from localStorage
     const [isLiked, setIsLiked] = useState(() => {
         try {
@@ -18,23 +19,41 @@ const Button = ({ initialLikes, blogId }) => {
         }
     });
 
-    const handleLikeToggle = () => {
+    const handleLikeToggle = async () => {
         const nextLiked = !isLiked;
         setIsLiked(nextLiked);
 
         try {
             localStorage.setItem(`blog_liked_${blogId}`, String(nextLiked));
-            localStorage.setItem(`blog_likes_count_${blogId}`, String(nextLiked ? initialLikes + 1 : initialLikes));
         } catch (e) {
             console.error('Failed to save like state to localStorage:', e);
         }
+
+        try {
+            await fetch(`https://portfolio-backend-mongo-nd6u.onrender.com/api/blogs/likes/${blogId}`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ liked: nextLiked })
+            });
+        } catch (error) {
+            console.error('Error updating like on server:', error);
+        }
     };
 
-    // Slot 'one' displays base count (initialLikes, shown when unliked)
-    // Slot 'two' displays liked count (initialLikes + 1, shown when liked)
-    // The CSS vertical slide animates seamlessly between them (+1 when liked, -1 when unliked)
-    const displayedCountOne = initialLikes;
-    const displayedCountTwo = initialLikes + 1;
+    // Use backend likes if available, otherwise fallback to initialLikes
+    const baseCount = backendLikes !== undefined ? backendLikes : initialLikes;
+
+    // Slot 'one' and 'two' drive the CSS animation.
+    let displayedCountOne = baseCount;
+    let displayedCountTwo = baseCount;
+    
+    if (isLiked) {
+        displayedCountOne = baseCount - 1; // Unliked state count
+        displayedCountTwo = baseCount;     // Liked state count
+    } else {
+        displayedCountOne = baseCount;     // Unliked state count
+        displayedCountTwo = baseCount + 1; // Liked state count
+    }
 
     return (
         <div className="like-wrapper">
@@ -84,7 +103,7 @@ const blogPosts = [
         title: 'Demystifying YOLO Object Detection & CNNs for Real-Time Vision',
         summary: 'How modern single-stage object detectors process video streams at 30+ FPS for real-world applications like our AI Forest Fire Detection system...',
         fullText: 'Computer vision has evolved from manual feature engineering to deep Convolutional Neural Networks. During our work on the AI Forest Fire Detection system, we implemented YOLO (You Only Look Once) to achieve real-time flame and smoke classification. By framing detection as a single regression problem, YOLO processes frames at high inference speeds, enabling rapid alert dispatch. This post breaks down transfer learning, anchor boxes, and bounding box regression for real-world deployments.',
-        image: '/assets/me1.jpg',
+        image: '/assets/me1.webp',
         initialLikes: 95
     },
     {
@@ -103,6 +122,24 @@ const Blog = () => {
     const [reviewStatus, setReviewStatus] = useState('');
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSubmitted, setIsSubmitted] = useState(false);
+    const [likesMap, setLikesMap] = useState({});
+
+    useEffect(() => {
+        fetch('https://portfolio-backend-mongo-nd6u.onrender.com/api/blogs/likes')
+            .then(res => res.json())
+            .then(data => setLikesMap(data))
+            .catch(err => console.error('Failed to fetch blog likes:', err));
+
+        // Dynamically load lordicon script
+        const scriptId = 'lordicon-script';
+        if (!document.getElementById(scriptId)) {
+            const script = document.createElement('script');
+            script.id = scriptId;
+            script.src = 'https://cdn.lordicon.com/lordicon.js';
+            script.async = true;
+            document.body.appendChild(script);
+        }
+    }, []);
 
     const toggleExpand = (id) => {
         setExpandedBlogs(prevState => ({
@@ -152,6 +189,10 @@ const Blog = () => {
 
     return (
         <div className="blog-page-wrapper">
+            <Helmet>
+                <title>Blog - Koushik Bhowmick | Engineering Insights</title>
+                <meta name="description" content="Technical deep-dives, AI experiments, and software architecture insights by Koushik Bhowmick." />
+            </Helmet>
             <div className="blogcontainer">
                 <section className="blog-hero">
                     <h1>Dreams, Code & Coffee – By Koushik</h1>
@@ -166,7 +207,7 @@ const Blog = () => {
                         <div className="blog-header">
                             <h2>{blog.title}</h2>
                             {/* --- Integrated Button Component --- */}
-                            <Button initialLikes={blog.initialLikes} blogId={blog.id} />
+                            <Button initialLikes={blog.initialLikes} blogId={blog.id} backendLikes={likesMap[blog.id]} />
                         </div>
                         <p className="blog-text">
                             {expandedBlogs[blog.id] ? blog.fullText : blog.summary}

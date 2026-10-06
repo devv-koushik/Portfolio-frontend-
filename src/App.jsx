@@ -1,12 +1,13 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Home from './components/home';
-import About from './components/About';
-import Skills from './components/skill';
 import Contact from './components/contact';
-import Blogs from './components/blog';
+
+const About = lazy(() => import('./components/About'));
+const Skills = lazy(() => import('./components/skill'));
+const Blogs = lazy(() => import('./components/blog'));
 import DeveloperTerminal from './components/DeveloperTerminal';
 import Lenis from '@studio-freight/lenis';
 
@@ -95,13 +96,15 @@ const RouteContainer = () => {
 
     return (
         <AnimatePresence mode="wait">
-            <Routes location={location} key={location.pathname}>
-                <Route path="/" element={<AnimatedPage><Home /></AnimatedPage>} />
-                <Route path="/about" element={<AnimatedPage><About /></AnimatedPage>} />
-                <Route path="/skills" element={<AnimatedPage><Skills /></AnimatedPage>} />
-                <Route path="/contact" element={<AnimatedPage><Contact /></AnimatedPage>} />
-                <Route path="/blogs" element={<AnimatedPage><Blogs /></AnimatedPage>} />
-            </Routes>
+            <Suspense fallback={<div className="loading-fallback" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', color: 'white' }}>Loading...</div>}>
+                <Routes location={location} key={location.pathname}>
+                    <Route path="/" element={<AnimatedPage><Home /></AnimatedPage>} />
+                    <Route path="/about" element={<AnimatedPage><About /></AnimatedPage>} />
+                    <Route path="/skills" element={<AnimatedPage><Skills /></AnimatedPage>} />
+                    <Route path="/contact" element={<AnimatedPage><Contact /></AnimatedPage>} />
+                    <Route path="/blogs" element={<AnimatedPage><Blogs /></AnimatedPage>} />
+                </Routes>
+            </Suspense>
         </AnimatePresence>
     );
 };

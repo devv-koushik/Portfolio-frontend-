@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from "react";
+import { Helmet } from 'react-helmet-async';
 import { motion } from "framer-motion";
 import { FaPython, FaJava, FaHtml5, FaCss3Alt, FaReact, FaGitAlt, FaNodeJs, FaBrain, FaCheckCircle } from "react-icons/fa";
 import {
@@ -123,6 +124,10 @@ export default function Skills() {
 
   return (
     <section className="skills-container" id="skills">
+      <Helmet>
+        <title>Skills - Koushik Bhowmick | Tech Stack</title>
+        <meta name="description" content="Explore Koushik Bhowmick's technical skills, including React, Python, C++, Deep Learning, and more." />
+      </Helmet>
       {/* Header */}
       <motion.div
         className="skills-header"

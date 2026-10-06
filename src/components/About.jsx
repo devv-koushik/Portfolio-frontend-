@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { 
     FaDownload, FaEnvelope, FaLightbulb, FaGraduationCap, 
     FaTrophy, FaBookOpen, FaGithub,
@@ -128,6 +129,10 @@ const About = () => {
 
     return (
         <div className="about-page-wrapper">
+            <Helmet>
+                <title>About - Koushik Bhowmick | Journey & Experience</title>
+                <meta name="description" content="Learn more about Koushik Bhowmick, a Full-Stack and AI Developer building scalable web systems and computer vision solutions." />
+            </Helmet>
             {/* Header Actions */}
             <div className="about-top-bar">
                 <div className="about-header-actions">
