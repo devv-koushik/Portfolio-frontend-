@@ -4,12 +4,12 @@ import { AnimatePresence, motion } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Home from './components/home';
 import Contact from './components/contact';
+import DeveloperTerminal from './components/DeveloperTerminal';
+import Lenis from '@studio-freight/lenis';
 
 const About = lazy(() => import('./components/About'));
 const Skills = lazy(() => import('./components/skill'));
 const Blogs = lazy(() => import('./components/blog'));
-import DeveloperTerminal from './components/DeveloperTerminal';
-import Lenis from '@studio-freight/lenis';
 
 // Navigation order for directional slide animation
 const routeOrder = {
