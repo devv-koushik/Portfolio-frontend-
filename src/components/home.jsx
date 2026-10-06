@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Helmet } from 'react-helmet-async';
+import { useLocation } from 'react-router-dom';
+import Contact from './contact';
+import HomeHighlights from './HomeHighlights';
 import { FaGithub, FaLinkedinIn, FaInstagram, FaEye } from 'react-icons/fa';
 import { FaXTwitter } from 'react-icons/fa6';
 import TypingEffect from '../JS/TypingEffect';
@@ -11,6 +14,18 @@ const Home = () => {
     const [isMobile, setIsMobile] = useState(false);
     const [tilt, setTilt] = useState({ rotX: 0, rotY: 0 });
     const [isResumeOpen, setIsResumeOpen] = useState(false);
+
+    const location = useLocation();
+
+    // Scroll to the contact section when navigating to /#contact
+    useEffect(() => {
+        if (location.hash === '#contact') {
+            const t = setTimeout(() => {
+                document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+            }, 400);
+            return () => clearTimeout(t);
+        }
+    }, [location.hash, location.key]);
 
     useEffect(() => {
         const checkMobile = () => setIsMobile(window.innerWidth <= 768);
@@ -41,6 +56,7 @@ const Home = () => {
 
             {!isMobile && <MatterCanvas />}
 
+            <div className="home-hero">
             <div className="main">
                 <div className="infocontiner">
                     <div className="devinfo">
@@ -72,14 +88,14 @@ const Home = () => {
                             <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" title="Twitter Profile">
                                 <FaXTwitter />
                             </a>
-                            <a href="https://www.instagram.com/koushik.me_/" target="_blank" rel="noopener noreferrer" title="Instagram Profile">
+                            <a href="https://www.instagram.com/koush__iik/" target="_blank" rel="noopener noreferrer" title="Instagram Profile">
                                 <FaInstagram />
                             </a>
                         </div>
 
                         <div className="buttons">
-                            <a href="/assets/My_CV.pdf" download="Koushik_Bhowmick_CV.pdf" target="_blank" className="btn" data-text="Download CV" rel="noopener noreferrer">
-                                Download CV
+                            <a href="#contact" className="btn" data-text="Contact me" onClick={(e) => { e.preventDefault(); document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }); }}>
+                                Contact me
                             </a>
                             <button
                                 type="button"
@@ -105,6 +121,11 @@ const Home = () => {
                     </div>
                 </div>
             </div>
+            </div>
+
+            <HomeHighlights />
+
+            <Contact />
 
             <footer>
                 <div className="bottom-text">

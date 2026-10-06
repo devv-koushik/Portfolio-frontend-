@@ -12,6 +12,12 @@
     width: 100%;
 }
 
+.home-hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
 .main {
     width: 90vw;
     margin: 0 auto;

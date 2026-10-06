@@ -20,8 +20,18 @@
     backdrop-filter: blur(8px);
 }
 
-.sidebar nav {
-    margin-left: 15rem;
+@media (min-width: 769px) {
+    .sidebar nav {
+        margin-left: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 60px;
+    }
+
+    .sidebar nav a {
+        margin-left: 0;
+    }
 }
 
 nav a {

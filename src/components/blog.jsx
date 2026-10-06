@@ -270,13 +270,13 @@ const Blog = () => {
                             style={{ "width": "25px", "height": "25px" }}>
                         </lord-icon>
 
-                        <a href="https://www.instagram.com/koushik.me_/" target='_blank' rel="noopener noreferrer">
+                        <a href="https://www.instagram.com/koush__iik/" target='_blank' rel="noopener noreferrer">
                             <lord-icon
                                 src="https://cdn.lordicon.com/wgtaryar.json"
                                 trigger="hover"
                                 state="hover-rotate"
                                 colors="primary:#4bb3fd,secondary:#f28ba8,tertiary:#ffc738,quaternary:#242424"
-                                href="https://www.instagram.com/koushik.me_/"
+                                href="https://www.instagram.com/koush__iik/"
                                 style={{ "width": "25px", "height": "25px" }}>
                             </lord-icon>
                         </a>

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Helmet } from 'react-helmet-async';
 import { FaLinkedinIn, FaInstagram, FaFacebook, FaPaperPlane, FaCopy, FaCheck } from 'react-icons/fa';
 import { FaXTwitter, FaLocationDot, FaPhoneVolume } from 'react-icons/fa6';
 import { MdEmail } from "react-icons/md";
@@ -24,18 +23,6 @@ const Contact = () => {
         setCopiedEmail(true);
         setTimeout(() => setCopiedEmail(false), 2000);
     };
-
-    // Lock all scroll on the contact page — no scrollbar wanted here
-    useEffect(() => {
-        const html = document.documentElement;
-        const body = document.body;
-        html.style.overflow = 'hidden';
-        body.style.overflow = 'hidden';
-        return () => {
-            html.style.overflow = '';
-            body.style.overflow = '';
-        };
-    }, []);
 
     // Function to handle changes in form inputs
     const handleChange = (e) => {
@@ -90,11 +77,7 @@ const Contact = () => {
 
     return (
         <>
-            <Helmet>
-                <title>Contact - Koushik Bhowmick | Get in Touch</title>
-                <meta name="description" content="Reach out to Koushik Bhowmick for collaborations, full-stack web development projects, or AI engineering opportunities." />
-            </Helmet>
-            <section className="contact">
+            <section className="contact" id="contact">
                 <div className="content">
                     <h2>contact me</h2>
                     <p>
@@ -115,10 +98,7 @@ const Contact = () => {
                                 </div>
                                 <div className="text">
                                     <h3>Address</h3>
-                                    <p>
-                                        Matkal , Kalitala <br /> po: Rabindrangar <br />
-                                        kol - 700065
-                                    </p>
+                                    <p>India , kolkata</p>
                                 </div>
                             </div>
                             <div className="box">
@@ -166,9 +146,9 @@ const Contact = () => {
                         {/* Social Links */}
                         <h2 className="txt">connect with me</h2>
                         <ul className="sci">
-                            <li><a href='https://www.facebook.com/'><FaFacebook size={24} color="#fff" /></a></li>
+                            <li><a href='https://www.facebook.com/profile.php?id=61586566007159'><FaFacebook size={24} color="#fff" /></a></li>
                             <li><a href='https://www.twitter.com/'><FaXTwitter size={24} color="#fff" /></a></li>
-                            <li><a href='https://www.instagram.com/koushik.me_/'><FaInstagram size={24} color="#fff" /></a></li>
+                            <li><a href='https://www.instagram.com/koush__iik/'><FaInstagram size={24} color="#fff" /></a></li>
                             <li><a href='https://www.linkedin.com/in/koushik-bhowmick-a832a5319/' ><FaLinkedinIn size={24} color="#fff" /></a></li>
                         </ul>
 

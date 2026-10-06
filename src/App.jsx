@@ -1,9 +1,8 @@
 import React, { useEffect, useRef, Suspense, lazy } from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Home from './components/home';
-import Contact from './components/contact';
 import DeveloperTerminal from './components/DeveloperTerminal';
 import Lenis from '@studio-freight/lenis';
 
@@ -73,8 +72,6 @@ const RouteContainer = () => {
     useEffect(() => {
         window.scrollTo(0, 0);
 
-        if (location.pathname === '/contact') return; // no smooth scroll on contact
-
         const lenis = new Lenis({
             duration: 1.2,
             easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -101,7 +98,7 @@ const RouteContainer = () => {
                     <Route path="/" element={<AnimatedPage><Home /></AnimatedPage>} />
                     <Route path="/about" element={<AnimatedPage><About /></AnimatedPage>} />
                     <Route path="/skills" element={<AnimatedPage><Skills /></AnimatedPage>} />
-                    <Route path="/contact" element={<AnimatedPage><Contact /></AnimatedPage>} />
+                    <Route path="/contact" element={<Navigate to="/#contact" replace />} />
                     <Route path="/blogs" element={<AnimatedPage><Blogs /></AnimatedPage>} />
                 </Routes>
             </Suspense>
