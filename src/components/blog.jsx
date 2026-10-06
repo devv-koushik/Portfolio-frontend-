@@ -30,7 +30,7 @@ const Button = ({ initialLikes, blogId, backendLikes }) => {
         }
 
         try {
-            await fetch(`https://portfolio-backend-mongo-nd6u.onrender.com/api/blogs/likes/${blogId}`, {
+            await fetch(`https://portfolio-backend-mongo-g5n6.onrender.com/api/blogs/likes/${blogId}`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ liked: nextLiked })
@@ -125,7 +125,7 @@ const Blog = () => {
     const [likesMap, setLikesMap] = useState({});
 
     useEffect(() => {
-        fetch('https://portfolio-backend-mongo-nd6u.onrender.com/api/blogs/likes')
+        fetch('https://portfolio-backend-mongo-g5n6.onrender.com/api/blogs/likes')
             .then(res => res.json())
             .then(data => setLikesMap(data))
             .catch(err => console.error('Failed to fetch blog likes:', err));
@@ -163,7 +163,7 @@ const Blog = () => {
         setIsSubmitting(true);
 
         try {
-            const response = await fetch('https://portfolio-backend-mongo-nd6u.onrender.com/api/blogs', {
+            const response = await fetch('https://portfolio-backend-mongo-g5n6.onrender.com/api/blogs', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ content: review })

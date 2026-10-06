@@ -56,7 +56,7 @@ const Contact = () => {
             // const response = await fetch('http://localhost:8000/api/contacts/', {
 
             // ✅ Express + MongoDB backend (new)
-            const response = await fetch('https://portfolio-backend-mongo-nd6u.onrender.com/api/contacts', {
+            const response = await fetch('https://portfolio-backend-mongo-g5n6.onrender.com/api/contacts', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
