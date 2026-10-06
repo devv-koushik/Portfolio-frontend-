@@ -11,13 +11,15 @@ import '../style/blog.css';
 
 const Button = ({ initialLikes, blogId, backendLikes }) => {
     // Check if current user has liked this post from localStorage
-    const [isLiked, setIsLiked] = useState(() => {
+    const getInitialLikeState = () => {
         try {
             return localStorage.getItem(`blog_liked_${blogId}`) === 'true';
         } catch {
             return false;
         }
-    });
+    };
+    const [initialIsLiked] = useState(getInitialLikeState);
+    const [isLiked, setIsLiked] = useState(initialIsLiked);
 
     const handleLikeToggle = async () => {
         const nextLiked = !isLiked;
@@ -44,16 +46,13 @@ const Button = ({ initialLikes, blogId, backendLikes }) => {
     const baseCount = backendLikes !== undefined ? backendLikes : initialLikes;
 
     // Slot 'one' and 'two' drive the CSS animation.
-    let displayedCountOne = baseCount;
-    let displayedCountTwo = baseCount;
+    // .one is the unliked state, .two is the liked state.
+    // They are computed relative to the initial state when baseCount was fetched.
+    const unlikedCount = initialIsLiked ? baseCount - 1 : baseCount;
+    const likedCount = initialIsLiked ? baseCount : baseCount + 1;
     
-    if (isLiked) {
-        displayedCountOne = baseCount - 1; // Unliked state count
-        displayedCountTwo = baseCount;     // Liked state count
-    } else {
-        displayedCountOne = baseCount;     // Unliked state count
-        displayedCountTwo = baseCount + 1; // Liked state count
-    }
+    let displayedCountOne = unlikedCount;
+    let displayedCountTwo = likedCount;
 
     return (
         <div className="like-wrapper">
