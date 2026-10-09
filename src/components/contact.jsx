@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { FaLinkedinIn, FaInstagram, FaFacebook, FaPaperPlane, FaCopy, FaCheck } from 'react-icons/fa';
 import { FaXTwitter, FaLocationDot, FaPhoneVolume } from 'react-icons/fa6';
 import { MdEmail } from "react-icons/md";
@@ -32,7 +32,7 @@ const Contact = () => {
     };
 
     // Draw CAPTCHA characters with distortion and noise onto canvas
-    const drawCaptcha = (code) => {
+    const drawCaptcha = useCallback((code) => {
         const canvas = captchaCanvasRef.current;
         if (!canvas) return;
         const ctx = canvas.getContext('2d');
@@ -89,10 +89,10 @@ const Contact = () => {
             ctx.fillText(char, 0, 0);
             ctx.restore();
         }
-    };
+    }, []);
 
     // Generate a fresh random 6-character code
-    const generateCaptcha = () => {
+    const generateCaptcha = useCallback(() => {
         const chars = '23456789ABCDEFGHJKLMNPQRSTUVWXYZ';
         let code = '';
         for (let i = 0; i < 6; i++) {
@@ -101,12 +101,12 @@ const Contact = () => {
         setCaptchaCode(code);
         setCaptchaError('');
         setTimeout(() => drawCaptcha(code), 20);
-    };
+    }, [drawCaptcha]);
 
     // Initialize CAPTCHA on mount and re-draw on theme change
     useEffect(() => {
         generateCaptcha();
-    }, []);
+    }, [generateCaptcha]);
 
     useEffect(() => {
         const handleThemeChange = () => {
@@ -116,7 +116,7 @@ const Contact = () => {
         };
         window.addEventListener('themeChange', handleThemeChange);
         return () => window.removeEventListener('themeChange', handleThemeChange);
-    }, [captchaCode]);
+    }, [captchaCode, drawCaptcha]);
 
     // Function to handle changes in form inputs
     const handleChange = (e) => {

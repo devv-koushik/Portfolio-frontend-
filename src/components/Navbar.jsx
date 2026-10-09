@@ -1,6 +1,6 @@
 // frontend/src/components/Navbar.jsx
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { IoMenu, IoClose, IoSunny, IoMoon } from 'react-icons/io5'; 
 import { NavLink, useLocation } from 'react-router-dom';
 import '../style/Navbar.css';
@@ -40,7 +40,7 @@ const Navbar = () => {
     });
 
     // Update capsule indicator position based on active item
-    const updateSlider = () => {
+    const updateSlider = useCallback(() => {
         const currentPath = location.pathname;
         const activeItemEl = itemRefs.current[currentPath];
         const wrapperEl = capsuleWrapperRef.current;
@@ -59,7 +59,7 @@ const Navbar = () => {
         } else {
             setSliderStyle((prev) => ({ ...prev, opacity: 0 }));
         }
-    };
+    }, [location.pathname]);
 
     // Re-calculate slider position on location change or window resize
     useEffect(() => {
@@ -70,7 +70,7 @@ const Navbar = () => {
             clearTimeout(timeoutId);
             window.removeEventListener('resize', updateSlider);
         };
-    }, [location.pathname]);
+    }, [updateSlider]);
 
     // Scroll effect
     useEffect(() => {
